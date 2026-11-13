@@ -1,13 +1,23 @@
-import necklaces from "@/assets/uora-necklaces.jpg";
-import earrings from "@/assets/uora-earrings.jpg";
-import rings from "@/assets/uora-rings.jpg";
-import kada from "@/assets/uora-kada.jpg";
-import bracelets from "@/assets/uora-bracelets.jpg";
-import ringDisplay from "@/assets/showcase-rings-sized.png";
-import cuffDisplay from "@/assets/showcase-cuff-sized.png";
-import chainDisplay from "@/assets/showcase-chain-sized.png";
-import necklaceDisplay from "@/assets/showcase-necklaces-sized.png";
-import earringDisplay from "@/assets/showcase-earrings-sized.png";
+import necklacesPointer from "@/assets/uora-necklaces.jpg.asset.json";
+const necklaces = necklacesPointer.url;
+import earringsPointer from "@/assets/uora-earrings.jpg.asset.json";
+const earrings = earringsPointer.url;
+import ringsPointer from "@/assets/uora-rings.jpg.asset.json";
+const rings = ringsPointer.url;
+import kadaPointer from "@/assets/uora-kada.jpg.asset.json";
+const kada = kadaPointer.url;
+import braceletsPointer from "@/assets/uora-bracelets.jpg.asset.json";
+const bracelets = braceletsPointer.url;
+import ringDisplayPointer from "@/assets/showcase-rings-sized.png.asset.json";
+const ringDisplay = ringDisplayPointer.url;
+import cuffDisplayPointer from "@/assets/showcase-cuff-sized.png.asset.json";
+const cuffDisplay = cuffDisplayPointer.url;
+import chainDisplayPointer from "@/assets/showcase-chain-sized.png.asset.json";
+const chainDisplay = chainDisplayPointer.url;
+import necklaceDisplayPointer from "@/assets/showcase-necklaces-sized.png.asset.json";
+const necklaceDisplay = necklaceDisplayPointer.url;
+import earringDisplayPointer from "@/assets/showcase-earrings-sized.png.asset.json";
+const earringDisplay = earringDisplayPointer.url;
 
 export type CategorySlug = "necklaces" | "earrings" | "rings" | "kada" | "bracelets";
 

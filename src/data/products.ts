@@ -1,11 +1,19 @@
-import necklaces from "@/assets/uora-necklaces.jpg";
-import earrings from "@/assets/uora-earrings.jpg";
-import rings from "@/assets/uora-rings.jpg";
-import kada from "@/assets/uora-kada.jpg";
-import bracelets from "@/assets/uora-bracelets.jpg";
-import hero from "@/assets/uora-editorial.jpg";
-import model2 from "@/assets/uora-model-earrings.jpg";
-import model3 from "@/assets/uora-model-wrist.jpg";
+import necklacesPointer from "@/assets/uora-necklaces.jpg.asset.json";
+const necklaces = necklacesPointer.url;
+import earringsPointer from "@/assets/uora-earrings.jpg.asset.json";
+const earrings = earringsPointer.url;
+import ringsPointer from "@/assets/uora-rings.jpg.asset.json";
+const rings = ringsPointer.url;
+import kadaPointer from "@/assets/uora-kada.jpg.asset.json";
+const kada = kadaPointer.url;
+import braceletsPointer from "@/assets/uora-bracelets.jpg.asset.json";
+const bracelets = braceletsPointer.url;
+import heroPointer from "@/assets/uora-editorial.jpg.asset.json";
+const hero = heroPointer.url;
+import model2Pointer from "@/assets/uora-model-earrings.jpg.asset.json";
+const model2 = model2Pointer.url;
+import model3Pointer from "@/assets/uora-model-wrist.jpg.asset.json";
+const model3 = model3Pointer.url;
 import type { CategorySlug } from "./categories";
 
 export interface Product {
