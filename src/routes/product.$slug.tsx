@@ -40,8 +40,10 @@ export const Route = createFileRoute("/product/$slug")({
 
 function ProductPage() {
   const { slug } = Route.useLoaderData();
-  const p = getProduct(slug)!;
-  const cat = getCategory(p.category)!;
+  const p = getProduct(slug);
+  if (!p) throw notFound();
+  const cat = getCategory(p.category);
+  if (!cat) throw notFound();
   const [img, setImg] = useState(0);
   const [qty, setQty] = useState(1);
   const [zoom, setZoom] = useState<{ x: number; y: number } | null>(null);
@@ -65,8 +67,8 @@ function ProductPage() {
           <div className="flex-1">
             <div className="relative aspect-[4/5] overflow-hidden border border-line bg-soft cursor-zoom-in"
               onClick={(e) => { if (zoom) return setZoom(null); const r = e.currentTarget.getBoundingClientRect(); setZoom({ x: ((e.clientX - r.left) / r.width) * 100, y: ((e.clientY - r.top) / r.height) * 100 }); }}
-              onTouchStart={(e) => (startX.current = e.touches[0]!.clientX)}
-              onTouchEnd={(e) => { const d = e.changedTouches[0]!.clientX - startX.current; if (Math.abs(d) > 50) { setZoom(null); setImg((i) => (i + (d < 0 ? 1 : -1) + p.images.length) % p.images.length); } }}>
+              onTouchStart={(e) => { const touch = e.touches.item(0); if (touch) startX.current = touch.clientX; }}
+              onTouchEnd={(e) => { const touch = e.changedTouches.item(0); if (!touch) return; const d = touch.clientX - startX.current; if (Math.abs(d) > 50) { setZoom(null); setImg((i) => (i + (d < 0 ? 1 : -1) + p.images.length) % p.images.length); } }}>
               <img src={p.images[img] ?? p.images[0]} alt={p.name} width={768} height={960} className="h-full w-full object-cover transition-transform duration-300"
                 style={zoom ? { transform: "scale(2)", transformOrigin: `${zoom.x}% ${zoom.y}%` } : undefined} />
             </div>

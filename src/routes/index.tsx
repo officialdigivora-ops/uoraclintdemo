@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Droplets, Leaf, Truck, Sparkles, Star } from "lucide-react";
-import hero from "@/assets/uora-editorial.jpg";
+import heroAsset from "@/assets/uora-editorial.jpg.asset.json";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -18,6 +18,7 @@ import { TRUST_BADGES } from "@/data/content";
 import { INSTAGRAM_HANDLE, INSTAGRAM_URL, whatsappLink } from "@/config/site";
 import { cn } from "@/lib/utils";
 
+const hero = heroAsset.url;
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [

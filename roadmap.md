@@ -24,3 +24,8 @@
 - [x] Replace social symbols with authentic brand icons; Facebook glyph is available but no profile URL was supplied.
 - [x] Generate and connect new jewellery and editorial imagery.
 - [x] Verify the header, images, pages and basket at desktop and phone widths.
+
+## External storefront migration
+- [ ] Import the storefront, all routes, and required assets.
+- [ ] Verify preview, product browsing, basket updates, and checkout link.
+- [ ] Resolve the placeholder WhatsApp number and non-connected form delivery before claiming production readiness.

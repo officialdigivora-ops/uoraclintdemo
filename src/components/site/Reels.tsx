@@ -32,7 +32,8 @@ function ReelModal({ idx, setIdx }: { idx: number; setIdx: (i: number | null) =>
   const [muted, setMuted] = useState(true);
   const startY = useRef(0);
   const { add } = useCart();
-  const reel = REELS[idx]!;
+  const reel = REELS[idx];
+  if (!reel) return null;
   const product = getProduct(reel.productSlug);
   const next = () => setIdx((idx + 1) % REELS.length);
   const prev = () => setIdx((idx - 1 + REELS.length) % REELS.length);
@@ -46,8 +47,8 @@ function ReelModal({ idx, setIdx }: { idx: number; setIdx: (i: number | null) =>
   return (
     <motion.div className="fixed inset-0 z-50 bg-background flex items-center justify-center" role="dialog" aria-modal aria-label="Reel"
       initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-      onTouchStart={(e) => (startY.current = e.touches[0]!.clientY)}
-      onTouchEnd={(e) => { const d = e.changedTouches[0]!.clientY - startY.current; if (d < -60) next(); if (d > 60) prev(); }}>
+      onTouchStart={(e) => { const touch = e.touches.item(0); if (touch) startY.current = touch.clientY; }}
+      onTouchEnd={(e) => { const touch = e.changedTouches.item(0); if (!touch) return; const d = touch.clientY - startY.current; if (d < -60) next(); if (d > 60) prev(); }}>
       <div className="relative h-full w-full max-w-[480px] lg:h-[92vh] lg:aspect-[9/16] lg:w-auto overflow-hidden lg:border lg:border-line">
         {reel.video ? (
           <video key={reel.id} src={reel.video} poster={reel.poster} autoPlay loop playsInline muted={muted} className="absolute inset-0 h-full w-full object-cover" />
