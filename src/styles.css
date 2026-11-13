@@ -149,11 +149,11 @@
   94% { transform: translateX(0) skewX(0); opacity: 1; }
 }
 @keyframes logo-trails { 0%, 83%, 94%, 100% { opacity: 0; } 85%, 90% { opacity: .75; } }
-.jewellery-hero { min-height: 540px; }
+.jewellery-hero { min-height: 500px; }
 .jewellery-hero > img { object-position: 65% center; }
 .jewellery-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg-elevated), transparent 65%); }
 @media (max-width: 767px) {
-  .jewellery-hero { min-height: 540px; }
+  .jewellery-hero { min-height: 460px; }
   .jewellery-hero > img { object-position: 72% top; }
   .jewellery-hero::after { background: linear-gradient(0deg, var(--bg-elevated) 12%, color-mix(in oklab, var(--bg-elevated) 93%, transparent) 32%, transparent 70%); }
 }

@@ -19,6 +19,12 @@
 - [x] Show four popular best sellers before a three-visible scrolling glass category showcase.
 - [x] Verify category navigation, scrolling, and phone/desktop layouts.
 
+## Product card and spacing cleanup
+- [x] Tighten homepage section spacing and reduce the mobile hero height.
+- [x] Remove category labels from product cards and show bestseller badges only in Popular Products.
+- [x] Rename product actions and cart copy to Add to Cart and Your Cart.
+- [x] Verify the mobile and desktop homepage, category/bestseller labels, and cart flow.
+
 ## Previous visual refresh
 - [x] Refresh the palette and header wordmark with a fast directional animation.
 - [x] Replace social symbols with authentic brand icons; Facebook glyph is available but no profile URL was supplied.

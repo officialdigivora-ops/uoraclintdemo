@@ -59,7 +59,7 @@ export function ProductCollection({ lockCategory }: { lockCategory?: CategorySlu
         <span className="ml-auto text-xs text-muted-foreground">{results.length} pieces</span>
       </div>
 
-      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-8 md:gap-x-6">
+      <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-x-3 gap-y-6 md:gap-x-6">
         {results.slice(0, limit).map((p) => <ProductCard key={p.slug} product={p} />)}
       </div>
       {results.length === 0 && <p className="text-center text-muted-foreground py-10">No pieces match these filters.</p>}

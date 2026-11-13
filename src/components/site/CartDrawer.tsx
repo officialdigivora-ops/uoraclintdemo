@@ -29,8 +29,8 @@ export function CartDrawer() {
     <Sheet open={open} onOpenChange={setOpen}>
       <SheetContent side="right" className="w-full sm:max-w-[420px] bg-elevated border-line p-0 flex flex-col gap-0">
         <div className="px-6 pt-6 pb-4 border-b border-line">
-          <SheetTitle className="font-display text-3xl font-medium">Your <em className="not-italic text-gold-gradient italic">Selection</em></SheetTitle>
-          <SheetDescription className="sr-only">Items you've chosen</SheetDescription>
+          <SheetTitle className="font-display text-3xl font-medium">Your <em className="not-italic text-gold-gradient italic">Cart</em></SheetTitle>
+          <SheetDescription className="sr-only">Items in your cart</SheetDescription>
           <div className="mt-4">
             <p className="text-xs text-muted-foreground mb-2">
               {left > 0 ? <>Add <span className="text-gold">{formatINR(left)}</span> more for free shipping</> : <span className="text-gold">You've unlocked free shipping ✦</span>}
@@ -42,7 +42,7 @@ export function CartDrawer() {
         <div className="flex-1 overflow-y-auto px-6">
           {lines.length === 0 ? (
             <div className="py-16 text-center">
-              <p className="font-display text-2xl">Nothing here yet</p>
+              <p className="font-display text-2xl">Your cart is empty</p>
               <p className="text-sm text-muted-foreground mt-2 mb-6">Pick a piece that feels like you.</p>
               <Button variant="outline" asChild onClick={() => setOpen(false)}><Link to="/" hash="shop">Browse pieces</Link></Button>
             </div>
