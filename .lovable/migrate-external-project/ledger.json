@@ -1,0 +1,120 @@
+{
+  "schema_version": 1,
+  "source": "code-archive",
+  "archive": "uora-curated-charms-to-chat.zip",
+  "application": "UORA jewellery storefront",
+  "capabilities": [
+    {
+      "capability": "application code and routes",
+      "source": "React / TanStack storefront with homepage, product and category pages, care and policy pages, filters, search, basket, and sitemap",
+      "outcome": "migrate",
+      "status": "in_progress",
+      "next_action": "Import the application and verify its customer flows"
+    },
+    {
+      "capability": "database schema",
+      "source": "No database schema or migration files detected",
+      "outcome": "not_present",
+      "status": "not_applicable",
+      "next_action": "None"
+    },
+    {
+      "capability": "catalog and customer records",
+      "source": "Catalog, policies, testimonials, and merchandising are code-backed; no separate record store or export detected",
+      "outcome": "migrate_with_code",
+      "status": "in_progress",
+      "next_action": "Verify the imported catalog and content"
+    },
+    {
+      "capability": "authentication identities",
+      "source": "No sign-in, user export, or identity provider detected",
+      "outcome": "not_present",
+      "status": "not_applicable",
+      "next_action": "None"
+    },
+    {
+      "capability": "authorization and roles",
+      "source": "No roles, memberships, or access-control rules detected",
+      "outcome": "not_present",
+      "status": "not_applicable",
+      "next_action": "None"
+    },
+    {
+      "capability": "uploaded file bytes",
+      "source": "Jewellery, editorial, and category imagery bundled with the archive",
+      "outcome": "migrate",
+      "status": "in_progress",
+      "next_action": "Import and verify displayed assets"
+    },
+    {
+      "capability": "external providers",
+      "source": "WhatsApp order/contact links and Instagram profile links; WhatsApp number is a placeholder in source",
+      "outcome": "preserve",
+      "status": "pending_user_value",
+      "next_action": "User must provide the real WhatsApp number before order links can work"
+    },
+    {
+      "capability": "payments",
+      "source": "No online payment provider or payment collection detected; order confirmation is via WhatsApp",
+      "outcome": "not_present",
+      "status": "not_applicable",
+      "next_action": "None"
+    },
+    {
+      "capability": "public endpoints",
+      "source": "Public sitemap.xml endpoint",
+      "outcome": "migrate",
+      "status": "in_progress",
+      "next_action": "Verify sitemap response"
+    },
+    {
+      "capability": "authentication callbacks",
+      "source": "None detected",
+      "outcome": "not_present",
+      "status": "not_applicable",
+      "next_action": "None"
+    },
+    {
+      "capability": "webhooks",
+      "source": "None detected",
+      "outcome": "not_present",
+      "status": "not_applicable",
+      "next_action": "None"
+    },
+    {
+      "capability": "scheduled jobs",
+      "source": "None detected",
+      "outcome": "not_present",
+      "status": "not_applicable",
+      "next_action": "None"
+    },
+    {
+      "capability": "secrets",
+      "source": "No environment variables or user-owned provider credentials detected",
+      "outcome": "not_present",
+      "status": "not_applicable",
+      "next_action": "None"
+    },
+    {
+      "capability": "contact and newsletter submissions",
+      "source": "Forms validate in the browser but do not send to a service or save submissions",
+      "outcome": "preserve_source_behavior",
+      "status": "not_connected_in_source",
+      "next_action": "A delivery service must be selected and connected if submissions should be received"
+    },
+    {
+      "capability": "cutover",
+      "source": "No public source domain or deployment details supplied",
+      "outcome": "pending",
+      "status": "blocked_on_source_details",
+      "next_action": "Confirm the source site's public domain and cutover timing if a live switch is required"
+    },
+    {
+      "capability": "verification",
+      "source": "Target preview",
+      "outcome": "pending",
+      "status": "not_started",
+      "next_action": "Verify the customer flows and public routes after import"
+    }
+  ]
+}
