@@ -19,6 +19,11 @@
 - [x] Show four popular best sellers before a three-visible scrolling glass category showcase.
 - [x] Verify category navigation, scrolling, and phone/desktop layouts.
 
+## Bestseller discount pricing
+- [ ] Apply the 20% Bestseller discount consistently across prices, cart, and order totals.
+- [ ] Add clear crossed-out original prices, discounted prices, and a polished Bestseller tag.
+- [ ] Verify discount arithmetic, product screens, cart totals, and order message.
+
 ## Product card and spacing cleanup
 - [x] Tighten homepage section spacing and reduce the mobile hero height.
 - [x] Remove category labels from product cards and show bestseller badges only in Popular Products.
