@@ -4,20 +4,16 @@ import ringsPointer from "@/assets/uora-rings.jpg.asset.json";
 import kadaPointer from "@/assets/uora-kada.jpg.asset.json";
 import braceletsPointer from "@/assets/uora-bracelets.jpg.asset.json";
 import ringDisplayPointer from "@/assets/showcase-rings-sized.png.asset.json";
-import cuffDisplayPointer from "@/assets/showcase-cuff-sized.png.asset.json";
-import chainDisplayPointer from "@/assets/showcase-chain-sized.png.asset.json";
-import necklaceDisplayPointer from "@/assets/showcase-necklaces-sized.png.asset.json";
-import earringDisplayPointer from "@/assets/showcase-earrings-sized.png.asset.json";
+import cuffDisplay from "@/assets/category-jar-cuff.png";
+import chainDisplay from "@/assets/category-jar-chain-bracelet.png";
+import necklaceDisplay from "@/assets/category-jar-necklaces.png";
+import earringDisplay from "@/assets/category-jar-earrings.png";
 const necklaces = (necklacesPointer as unknown as { url: string }).url;
 const earrings = (earringsPointer as unknown as { url: string }).url;
 const rings = (ringsPointer as unknown as { url: string }).url;
 const kada = (kadaPointer as unknown as { url: string }).url;
 const bracelets = (braceletsPointer as unknown as { url: string }).url;
 const ringDisplay = (ringDisplayPointer as unknown as { url: string }).url;
-const cuffDisplay = (cuffDisplayPointer as unknown as { url: string }).url;
-const chainDisplay = (chainDisplayPointer as unknown as { url: string }).url;
-const necklaceDisplay = (necklaceDisplayPointer as unknown as { url: string }).url;
-const earringDisplay = (earringDisplayPointer as unknown as { url: string }).url;
 
 export type CategorySlug = "necklaces" | "earrings" | "rings" | "kada" | "bracelets";
 
