@@ -10,9 +10,9 @@ export function Reels() {
   const [idx, setIdx] = useState<number | null>(null);
   return (
     <>
-      <div className="flex gap-3 lg:gap-5 overflow-x-auto no-scrollbar snap-x snap-mandatory -mx-4 pl-10 pr-4 md:mx-0 md:pl-4 md:pr-0 pb-2">
+      <div className="flex gap-3 lg:gap-5 overflow-x-auto no-scrollbar snap-x snap-mandatory -mx-4 px-4 md:mx-0 md:px-0 pb-2">
         {REELS.map((r, i) => (
-          <button key={r.id} onClick={() => setIdx(i)} className="group relative shrink-0 w-[200px] lg:w-[260px] aspect-[9/16] overflow-hidden border border-line snap-start text-left hover:glow-gold transition-shadow" aria-label={`Play reel: ${r.caption}`}>
+          <button key={r.id} onClick={() => setIdx(i)} className="group relative shrink-0 w-[200px] lg:w-[260px] aspect-[9/16] overflow-hidden border border-line snap-start text-left hover:glow-gold transition-shadow first:ml-6 md:first:ml-4" aria-label={`Play reel: ${r.caption}`}>
             <img src={r.poster} alt={r.caption} loading="lazy" className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" />
             <div className="absolute inset-0 overlay-fade" />
             <span className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 flex h-14 w-14 items-center justify-center rounded-full border border-gold bg-background/40 backdrop-blur text-gold"><Play className="size-5 fill-current ml-0.5" /></span>
