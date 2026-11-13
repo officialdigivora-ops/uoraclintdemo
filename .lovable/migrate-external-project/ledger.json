@@ -8,8 +8,8 @@
       "capability": "application code and routes",
       "source": "React / TanStack storefront with homepage, product and category pages, care and policy pages, filters, search, basket, and sitemap",
       "outcome": "migrate",
-      "status": "in_progress",
-      "next_action": "Import the application and verify its customer flows"
+      "status": "imported_preview_verification_pending",
+      "next_action": "Run preview checks for all important pages and customer flows"
     },
     {
       "capability": "database schema",
@@ -22,8 +22,8 @@
       "capability": "catalog and customer records",
       "source": "Catalog, policies, testimonials, and merchandising are code-backed; no separate record store or export detected. Source labels testimonials as placeholders, and legal text as placeholder policy text to review.",
       "outcome": "migrate_with_code",
-      "status": "in_progress",
-      "next_action": "Verify the imported catalog and content"
+      "status": "imported_preview_verification_pending",
+      "next_action": "Verify the imported catalog and content in the preview"
     },
     {
       "capability": "authentication identities",
@@ -43,8 +43,8 @@
       "capability": "uploaded file bytes",
       "source": "Jewellery, editorial, and category imagery bundled with the archive",
       "outcome": "migrate",
-      "status": "in_progress",
-      "next_action": "Import and verify displayed assets"
+      "status": "imported_preview_verification_pending",
+      "next_action": "Verify the imported assets load in the preview"
     },
     {
       "capability": "external providers",
@@ -64,8 +64,8 @@
       "capability": "public endpoints",
       "source": "Public sitemap.xml endpoint includes the home page, five category pages, 16 product pages, and policy pages",
       "outcome": "migrate",
-      "status": "in_progress",
-      "next_action": "Verify sitemap response"
+      "status": "imported_preview_verification_pending",
+      "next_action": "Verify the sitemap response in the preview"
     },
     {
       "capability": "authentication callbacks",
@@ -113,8 +113,8 @@
       "capability": "verification",
       "source": "Target preview",
       "outcome": "pending",
-      "status": "not_started",
-      "next_action": "Verify the customer flows and public routes after import"
+      "status": "in_progress",
+      "next_action": "Check the final preview, all public routes, and the shopping flow"
     }
   ]
 }
