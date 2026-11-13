@@ -23,6 +23,7 @@ export function CartDrawer() {
   const total = subtotal(lines);
   const left = remainingForFreeShipping(total);
   const pct = Math.min(100, (total / FREE_SHIPPING_THRESHOLD) * 100);
+  const orderUrl = checkoutUrl(lines);
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
@@ -71,9 +72,13 @@ export function CartDrawer() {
               <span className="font-display text-2xl text-gold">{formatINR(total)}</span>
             </div>
             <p className="text-xs text-muted-foreground">Availability confirmed via WhatsApp. No payment is collected on this site.</p>
-            <Button asChild className="w-full">
-              <a href={checkoutUrl(lines)} target="_blank" rel="noreferrer"><WhatsAppIcon /> Checkout on WhatsApp</a>
-            </Button>
+            {orderUrl ? (
+              <Button asChild className="w-full">
+                <a href={orderUrl} target="_blank" rel="noreferrer"><WhatsAppIcon /> Checkout on WhatsApp</a>
+              </Button>
+            ) : (
+              <Button type="button" className="w-full" disabled>WhatsApp orders unavailable</Button>
+            )}
           </div>
         )}
       </SheetContent>

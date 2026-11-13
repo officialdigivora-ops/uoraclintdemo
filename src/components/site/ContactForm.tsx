@@ -22,10 +22,8 @@ export function ContactForm() {
       return;
     }
     setErrors({});
-    // No backend connected yet — enquiries are logged locally.
-    console.info("UORA enquiry", r.data);
-    toast.success("Enquiry sent ✦", { description: "We'll get back to you within 24 hours." });
-    form.reset();
+    void r.data;
+    toast.error("The enquiry form isn't connected yet. Please contact UORA directly.");
   };
   return (
     <form onSubmit={submit} noValidate className="space-y-5">

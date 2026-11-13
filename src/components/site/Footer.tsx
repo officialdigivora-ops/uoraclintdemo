@@ -15,8 +15,7 @@ export function Footer() {
   const subscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (!z.string().email().safeParse(email).success) { toast.error("Please enter a valid email"); return; }
-    toast.success("Welcome to the Aura ✦", { description: "You'll hear about new drops first." });
-    setEmail("");
+    toast.error("Newsletter sign-up isn't connected yet.");
   };
   return (
     <footer className="border-t border-line bg-elevated">
@@ -26,7 +25,7 @@ export function Footer() {
           <p className="text-sm text-muted-foreground max-w-xs">{BRAND.blurb}</p>
           <div className="flex gap-3">
             <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram" className="flex h-11 w-11 items-center justify-center rounded-full border border-gold text-gold hover:bg-gold hover:text-primary-foreground transition-colors"><InstagramIcon className="size-5" strokeWidth={1.25} /></a>
-            <a href={whatsappLink()} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="flex h-11 w-11 items-center justify-center rounded-full border border-gold text-gold hover:bg-gold hover:text-primary-foreground transition-colors"><WhatsAppIcon /></a>
+            {whatsappLink() && <a href={whatsappLink() ?? undefined} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="flex h-11 w-11 items-center justify-center rounded-full border border-gold text-gold hover:bg-gold hover:text-primary-foreground transition-colors"><WhatsAppIcon /></a>}
           </div>
         </div>
         <div className="border-t border-line pt-6 md:border-0 md:pt-0">

@@ -38,6 +38,7 @@ export const Route = createFileRoute("/")({
 const ICONS = { droplets: Droplets, leaf: Leaf, truck: Truck, sparkles: Sparkles };
 
 function Index() {
+  const contactLink = whatsappLink("Hi UORA! I need help choosing a piece.");
   return (
     <>
       {/* 1. Hero */}
@@ -142,7 +143,7 @@ function Index() {
             <h2 className="h2-lux">Need Help Choosing? We're Here for <em>You</em></h2>
             <p className="text-muted-foreground mt-5 max-w-md">Not sure which hoop size suits you, or looking for a gift? Message us and we'll help you find a piece that feels unmistakably yours.</p>
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <Button asChild><a href={whatsappLink("Hi UORA! I need help choosing a piece.")} target="_blank" rel="noreferrer"><WhatsAppIcon /> WhatsApp Us</a></Button>
+              {contactLink && <Button asChild><a href={contactLink} target="_blank" rel="noreferrer"><WhatsAppIcon /> WhatsApp Us</a></Button>}
               <Button asChild variant="outline"><a href={INSTAGRAM_URL} target="_blank" rel="noreferrer"><InstagramIcon /> @{INSTAGRAM_HANDLE}</a></Button>
             </div>
           </Reveal>

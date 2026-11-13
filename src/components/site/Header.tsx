@@ -17,6 +17,7 @@ export function Header() {
   const [menu, setMenu] = useState(false);
   const [search, setSearch] = useState(false);
   const { count, setOpen } = useCart();
+  const contactLink = whatsappLink();
 
   useEffect(() => {
     const on = () => setScrolled(window.scrollY > 40);
@@ -85,7 +86,7 @@ export function Header() {
             </ul>
           </div>
           <div className="flex gap-3 border-t border-line px-6 py-5">
-            <a href={whatsappLink()} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="flex h-11 w-11 items-center justify-center rounded-full border border-gold text-gold"><WhatsAppIcon /></a>
+            {contactLink && <a href={contactLink} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="flex h-11 w-11 items-center justify-center rounded-full border border-gold text-gold"><WhatsAppIcon /></a>}
             <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram" className="flex h-11 w-11 items-center justify-center rounded-full border border-gold text-gold"><InstagramIcon className="size-5" strokeWidth={1.25} /></a>
           </div>
         </SheetContent>

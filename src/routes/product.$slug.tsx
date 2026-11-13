@@ -90,7 +90,11 @@ function ProductPage() {
             <QtyStepper value={qty} onChange={(n) => setQty(Math.max(1, n))} label="quantity" />
             <Button className="flex-1" onClick={() => add(p, qty)}>Add to Selection</Button>
           </div>
-          <Button asChild variant="outline" className="w-full mt-3"><a href={buy} target="_blank" rel="noreferrer"><WhatsAppIcon /> Buy on WhatsApp</a></Button>
+          {buy ? (
+            <Button asChild variant="outline" className="w-full mt-3"><a href={buy} target="_blank" rel="noreferrer"><WhatsAppIcon /> Buy on WhatsApp</a></Button>
+          ) : (
+            <Button type="button" variant="outline" className="w-full mt-3" disabled>WhatsApp orders unavailable</Button>
+          )}
           <Accordion type="single" collapsible className="mt-10 border-t border-line">
             {([
               ["Details", `${p.description} 18K gold plated over a surgical-steel base. Lightweight and comfortable for all-day wear.`],

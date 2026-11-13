@@ -81,7 +81,7 @@ function CareGuide() {
           <h2 className="h2-lux">Still Have <em>Questions?</em></h2>
           <p className="text-muted-foreground mt-4 mb-8">We're happy to help — reach us on any channel.</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
-            <Button asChild><a href={whatsappLink()} target="_blank" rel="noreferrer"><WhatsAppIcon /> WhatsApp</a></Button>
+            {whatsappLink() && <Button asChild><a href={whatsappLink() ?? undefined} target="_blank" rel="noreferrer"><WhatsAppIcon /> WhatsApp</a></Button>}
             <Button asChild variant="outline"><a href={INSTAGRAM_URL} target="_blank" rel="noreferrer"><InstagramIcon /> Instagram</a></Button>
             <Button asChild variant="outline"><a href={`mailto:${EMAIL}`}><Mail /> Email</a></Button>
           </div>

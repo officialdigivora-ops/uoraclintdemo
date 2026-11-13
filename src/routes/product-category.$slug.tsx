@@ -13,7 +13,7 @@ export const Route = createFileRoute("/product-category/$slug")({
   head: ({ loaderData, params }) => ({
     meta: [
       { title: loaderData ? `${loaderData.label} – Gold Plated ${loaderData.label} | UORA` : "Collection | UORA" },
-      { name: "description", content: loaderData ? `${loaderData.intro} Anti-tarnish, skin friendly, free shipping over ₹1299.` : "UORA collection" },
+      { name: "description", content: loaderData ? `${loaderData.intro} Explore UORA ${loaderData.label.toLowerCase()} jewellery.` : "Explore the UORA jewellery collection." },
       { property: "og:title", content: loaderData ? `${loaderData.label} | UORA` : "UORA" },
       { property: "og:description", content: loaderData?.intro ?? "UORA collection" },
       { name: "twitter:card", content: "summary_large_image" },
