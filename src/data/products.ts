@@ -1,21 +1,22 @@
-import necklacesAsset from "@/assets/uora-necklaces.jpg.asset.json";
-import earringsAsset from "@/assets/uora-earrings.jpg.asset.json";
-import ringsAsset from "@/assets/uora-rings.jpg.asset.json";
-import kadaAsset from "@/assets/uora-kada.jpg.asset.json";
-import braceletsAsset from "@/assets/uora-bracelets.jpg.asset.json";
-import heroAsset from "@/assets/uora-editorial.jpg.asset.json";
-import model2Asset from "@/assets/uora-model-earrings.jpg.asset.json";
-import model3Asset from "@/assets/uora-model-wrist.jpg.asset.json";
+import necklacesPointer from "@/assets/uora-necklaces.jpg.asset.json";
+import earringsPointer from "@/assets/uora-earrings.jpg.asset.json";
+import ringsPointer from "@/assets/uora-rings.jpg.asset.json";
+import kadaPointer from "@/assets/uora-kada.jpg.asset.json";
+import braceletsPointer from "@/assets/uora-bracelets.jpg.asset.json";
+import heroPointer from "@/assets/uora-editorial.jpg.asset.json";
+import model2Pointer from "@/assets/uora-model-earrings.jpg.asset.json";
+import model3Pointer from "@/assets/uora-model-wrist.jpg.asset.json";
 import type { CategorySlug } from "./categories";
 
-const necklaces = necklacesAsset.url;
-const earrings = earringsAsset.url;
-const rings = ringsAsset.url;
-const kada = kadaAsset.url;
-const bracelets = braceletsAsset.url;
-const hero = heroAsset.url;
-const model2 = model2Asset.url;
-const model3 = model3Asset.url;
+const necklaces = (necklacesPointer as unknown as { url: string }).url;
+const earrings = (earringsPointer as unknown as { url: string }).url;
+const rings = (ringsPointer as unknown as { url: string }).url;
+const kada = (kadaPointer as unknown as { url: string }).url;
+const bracelets = (braceletsPointer as unknown as { url: string }).url;
+const hero = (heroPointer as unknown as { url: string }).url;
+const model2 = (model2Pointer as unknown as { url: string }).url;
+const model3 = (model3Pointer as unknown as { url: string }).url;
+
 export interface Product {
   slug: string;
   name: string;

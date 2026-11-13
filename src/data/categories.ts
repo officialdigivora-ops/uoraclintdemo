@@ -1,23 +1,24 @@
-import necklacesAsset from "@/assets/uora-necklaces.jpg.asset.json";
-import earringsAsset from "@/assets/uora-earrings.jpg.asset.json";
-import ringsAsset from "@/assets/uora-rings.jpg.asset.json";
-import kadaAsset from "@/assets/uora-kada.jpg.asset.json";
-import braceletsAsset from "@/assets/uora-bracelets.jpg.asset.json";
-import ringDisplayAsset from "@/assets/showcase-rings-sized.png.asset.json";
-import cuffDisplayAsset from "@/assets/showcase-cuff-sized.png.asset.json";
-import chainDisplayAsset from "@/assets/showcase-chain-sized.png.asset.json";
-import necklaceDisplayAsset from "@/assets/showcase-necklaces-sized.png.asset.json";
-import earringDisplayAsset from "@/assets/showcase-earrings-sized.png.asset.json";
-const necklaces = necklacesAsset.url;
-const earrings = earringsAsset.url;
-const rings = ringsAsset.url;
-const kada = kadaAsset.url;
-const bracelets = braceletsAsset.url;
-const ringDisplay = ringDisplayAsset.url;
-const cuffDisplay = cuffDisplayAsset.url;
-const chainDisplay = chainDisplayAsset.url;
-const necklaceDisplay = necklaceDisplayAsset.url;
-const earringDisplay = earringDisplayAsset.url;
+import necklacesPointer from "@/assets/uora-necklaces.jpg.asset.json";
+import earringsPointer from "@/assets/uora-earrings.jpg.asset.json";
+import ringsPointer from "@/assets/uora-rings.jpg.asset.json";
+import kadaPointer from "@/assets/uora-kada.jpg.asset.json";
+import braceletsPointer from "@/assets/uora-bracelets.jpg.asset.json";
+import ringDisplayPointer from "@/assets/showcase-rings-sized.png.asset.json";
+import cuffDisplayPointer from "@/assets/showcase-cuff-sized.png.asset.json";
+import chainDisplayPointer from "@/assets/showcase-chain-sized.png.asset.json";
+import necklaceDisplayPointer from "@/assets/showcase-necklaces-sized.png.asset.json";
+import earringDisplayPointer from "@/assets/showcase-earrings-sized.png.asset.json";
+const necklaces = (necklacesPointer as unknown as { url: string }).url;
+const earrings = (earringsPointer as unknown as { url: string }).url;
+const rings = (ringsPointer as unknown as { url: string }).url;
+const kada = (kadaPointer as unknown as { url: string }).url;
+const bracelets = (braceletsPointer as unknown as { url: string }).url;
+const ringDisplay = (ringDisplayPointer as unknown as { url: string }).url;
+const cuffDisplay = (cuffDisplayPointer as unknown as { url: string }).url;
+const chainDisplay = (chainDisplayPointer as unknown as { url: string }).url;
+const necklaceDisplay = (necklaceDisplayPointer as unknown as { url: string }).url;
+const earringDisplay = (earringDisplayPointer as unknown as { url: string }).url;
+
 export type CategorySlug = "necklaces" | "earrings" | "rings" | "kada" | "bracelets";
 
 export interface Category {
