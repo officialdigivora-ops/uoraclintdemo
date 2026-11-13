@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Droplets, Leaf, Truck, Sparkles, Star } from "lucide-react";
 import heroPointer from "@/assets/uora-editorial.jpg.asset.json";
+import deliveryVan from "@/assets/uora-delivery-van.png";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -77,15 +78,19 @@ function Index() {
       </section>
 
       {/* 4. Trust */}
-      <section className="border-y border-line">
+      <section className="border-y border-line bg-elevated">
         <div className="container-lux grid grid-cols-2 lg:grid-cols-4">
           {TRUST_BADGES.map((b, i) => {
             const I = ICONS[b.icon];
             return (
-              <div key={b.title} className={cn("py-8 px-3 text-center border-line", i % 2 === 0 && "border-r", i < 2 && "border-b lg:border-b-0", i === 1 && "lg:border-r", i === 2 && "lg:border-r")}>
-                <I className="mx-auto size-7 text-gold mb-3" strokeWidth={1} />
-                <p className="font-display text-lg leading-tight">{b.title}</p>
-                <p className="text-xs text-muted-foreground mt-1">{b.text}</p>
+              <div key={b.title} className={cn("flex min-h-44 flex-col items-center justify-center border-line px-3 py-6 text-center sm:min-h-52 sm:py-8", i % 2 === 0 && "border-r", i < 2 && "border-b lg:border-b-0", i === 1 && "lg:border-r", i === 2 && "lg:border-r")}>
+                {b.icon === "truck" ? (
+                  <img src={deliveryVan} alt="Delivery van carrying a parcel" width={1024} height={1024} loading="lazy" className="mb-2 h-20 w-full max-w-44 object-contain sm:h-24" />
+                ) : (
+                  <I className="mb-3 size-8 text-gold" strokeWidth={1.25} />
+                )}
+                <p className="font-display text-lg leading-tight sm:text-xl">{b.title}</p>
+                <p className="mt-1 text-sm text-muted-foreground">{b.text}</p>
               </div>
             );
           })}
