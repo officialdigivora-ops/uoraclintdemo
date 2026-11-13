@@ -9,10 +9,10 @@ export function AnnouncementBar() {
     return () => clearInterval(t);
   }, []);
   return (
-    <div className="bg-gold-gradient text-primary-foreground h-11 sm:h-9 flex items-center justify-center overflow-hidden px-3" role="region" aria-label="Announcements">
+    <div className="bg-gold-gradient text-primary-foreground flex min-h-14 w-full items-center justify-center px-3 py-2 sm:min-h-12" role="region" aria-label="Announcements">
       <AnimatePresence mode="wait">
         <motion.p key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }}
-          className="w-full max-w-3xl min-w-0 text-center text-[11px] lg:text-xs leading-4 font-medium tracking-normal uppercase whitespace-normal break-words">
+          className="w-full min-w-0 text-center font-display text-xl leading-tight font-semibold tracking-normal whitespace-normal break-words md:text-2xl">
           {ANNOUNCEMENTS[i]}
         </motion.p>
       </AnimatePresence>

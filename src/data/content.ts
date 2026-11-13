@@ -14,10 +14,10 @@ export const BRAND = {
 };
 
 export const ANNOUNCEMENTS = [
+  "2,000 pieces sold daily",
   // Preview-only promotions; not applied to selection totals or shipping rules.
   "50% off ₹2,999+ · UORA50",
   "First-order free shipping",
-  "2,000 pieces sold daily",
   "Free shipping on orders ₹1,299+",
 ];
 
