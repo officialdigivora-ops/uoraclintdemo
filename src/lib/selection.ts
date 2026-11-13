@@ -1,6 +1,6 @@
 import { FREE_SHIPPING_THRESHOLD, whatsappLink } from "@/config/site";
 
-export interface SelectionLine { slug: string; name: string; price: number; qty: number; image: string }
+export interface SelectionLine { slug: string; name: string; price: number; originalPrice?: number; qty: number; image: string }
 
 export const subtotal = (lines: SelectionLine[]) => lines.reduce((s, l) => s + l.price * l.qty, 0);
 export const remainingForFreeShipping = (total: number) => Math.max(0, FREE_SHIPPING_THRESHOLD - total);

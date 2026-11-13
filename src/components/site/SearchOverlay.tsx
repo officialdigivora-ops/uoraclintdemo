@@ -2,8 +2,9 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "framer-motion";
 import { Search, X } from "lucide-react";
-import { PRODUCTS, formatINR } from "@/data/products";
+import { getProductOriginalPrice, getProductPrice, PRODUCTS } from "@/data/products";
 import { getCategory } from "@/data/categories";
+import { ProductPrice } from "./ProductPrice";
 
 export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () => void }) {
   const [q, setQ] = useState("");
@@ -42,7 +43,7 @@ export function SearchOverlay({ open, onClose }: { open: boolean; onClose: () =>
                     <img src={p.images[0]} alt={p.name} className="h-16 w-14 object-cover" loading="lazy" />
                     <div className="min-w-0">
                       <p className="font-display text-lg truncate">{p.name}</p>
-                      <p className="text-sm text-gold">{formatINR(p.price)}</p>
+                      <ProductPrice className="justify-start" size="compact" price={getProductPrice(p)} originalPrice={getProductOriginalPrice(p)} />
                     </div>
                   </Link>
                 </li>

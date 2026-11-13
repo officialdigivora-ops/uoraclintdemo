@@ -2,9 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, ChevronUp, Play, Volume2, VolumeX, X } from "lucide-react";
 import { REELS } from "@/data/reels";
-import { getProduct, formatINR } from "@/data/products";
+import { getProduct, getProductOriginalPrice, getProductPrice } from "@/data/products";
 import { useCart } from "@/lib/cart";
 import { Button } from "@/components/ui/button";
+import { ProductPrice } from "./ProductPrice";
 
 export function Reels() {
   const [idx, setIdx] = useState<number | null>(null);
@@ -67,7 +68,7 @@ function ReelModal({ idx, setIdx }: { idx: number; setIdx: (i: number | null) =>
         {product && (
           <div className="absolute bottom-0 inset-x-0 p-5">
             <p className="font-display text-2xl">{product.name}</p>
-            <p className="text-gold mb-4">{formatINR(product.price)}</p>
+            <ProductPrice className="justify-start mb-4" price={getProductPrice(product)} originalPrice={getProductOriginalPrice(product)} />
             <Button className="w-full" onClick={() => add(product)}>Shop this look</Button>
           </div>
         )}

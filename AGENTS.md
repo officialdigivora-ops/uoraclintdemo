@@ -31,3 +31,4 @@ use the editor.
 
 ## Imported storefront structure
 - Keep the UORA storefront's route pages, shared shopping UI, catalog content, and customer-facing configuration separated in their existing `src/routes`, `src/components/site`, `src/data`, and `src/config` areas so merchandising updates stay localized.
+- Keep bestseller sale-price calculations in shared product data helpers and render prices through a shared storefront price component so product views, cart, and order totals stay consistent.

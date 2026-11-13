@@ -56,7 +56,10 @@ export function CartDrawer() {
                       <p className="font-display text-lg leading-tight">{l.name}</p>
                       <button onClick={() => remove(l.slug)} aria-label={`Remove ${l.name}`} className="-mt-2 -mr-3 h-11 w-11 flex items-center justify-center text-muted-foreground hover:text-gold"><X className="size-4" /></button>
                     </div>
-                    <p className="text-gold text-sm mb-2">{formatINR(l.price)}</p>
+                    <p className="mb-2 flex flex-wrap items-baseline gap-x-2 text-sm">
+                      <span className="text-gold">{formatINR(l.price)}</span>
+                      {l.originalPrice !== undefined && <span className="text-xs text-muted-foreground line-through">{formatINR(l.originalPrice)}</span>}
+                    </p>
                     <QtyStepper value={l.qty} onChange={(n) => setQty(l.slug, n)} label={l.name} />
                   </div>
                 </li>

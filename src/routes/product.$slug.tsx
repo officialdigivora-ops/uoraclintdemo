@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
-import { getProduct, PRODUCTS, formatINR } from "@/data/products";
+import { getProduct, getProductOriginalPrice, getProductPrice, PRODUCTS, formatINR } from "@/data/products";
 import { getCategory } from "@/data/categories";
 import { MATERIALS } from "@/data/content";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
@@ -12,12 +12,13 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { useCart } from "@/lib/cart";
 import { whatsappLink } from "@/config/site";
 import { cn } from "@/lib/utils";
+import { ProductPrice } from "@/components/site/ProductPrice";
 
 export const Route = createFileRoute("/product/$slug")({
   loader: ({ params }) => {
     const p = getProduct(params.slug);
     if (!p) throw notFound();
-    return { slug: p.slug, name: p.name, price: p.price, description: p.description };
+    return { slug: p.slug, name: p.name, price: getProductPrice(p), description: p.description };
   },
   head: ({ loaderData, params }) => ({
     meta: [
@@ -50,7 +51,8 @@ function ProductPage() {
   const startX = useRef(0);
   const { add } = useCart();
   const related = PRODUCTS.filter((x) => x.slug !== p.slug && x.category === p.category).concat(PRODUCTS.filter((x) => x.category !== p.category)).slice(0, 4);
-  const buy = whatsappLink(`Hi UORA! I'd like to buy:\n\n${p.name} × ${qty} — ${formatINR(p.price * qty)}\n\nPlease confirm availability.`);
+  const price = getProductPrice(p);
+  const buy = whatsappLink(`Hi UORA! I'd like to buy:\n\n${p.name} × ${qty} — ${formatINR(price * qty)}\n\nPlease confirm availability.`);
 
   return (
     <div className="container-lux section-y">
@@ -81,7 +83,7 @@ function ProductPage() {
         <div>
           <p className="eyebrow mb-3">{cat.label}</p>
           <h1 className="font-display text-4xl lg:text-5xl">{p.name}</h1>
-          <p className="text-gold text-2xl font-display mt-3">{formatINR(p.price)}</p>
+          <ProductPrice className="justify-start mt-3" size="large" price={price} originalPrice={getProductOriginalPrice(p)} />
           <p className="text-muted-foreground mt-5">{p.description}</p>
           <div className="flex flex-wrap gap-2 mt-6">
             {MATERIALS.map((m) => <span key={m} className="rounded-full border border-line px-3 py-1.5 text-[11px] uppercase tracking-[0.14em]">{m}</span>)}

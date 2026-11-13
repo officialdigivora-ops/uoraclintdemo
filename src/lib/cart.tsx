@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { toast } from "sonner";
-import type { Product } from "@/data/products";
+import { getProduct, getProductOriginalPrice, getProductPrice, type Product } from "@/data/products";
 import type { SelectionLine } from "./selection";
 
 interface Ctx {
@@ -21,7 +21,22 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    try { const raw = localStorage.getItem(KEY); if (raw) setLines(JSON.parse(raw)); } catch { /* ignore */ }
+    try {
+      const raw = localStorage.getItem(KEY);
+      if (raw) {
+        const saved = JSON.parse(raw) as SelectionLine[];
+        setLines(saved.map((line) => {
+          const product = getProduct(line.slug);
+          return product ? {
+            ...line,
+            name: product.name,
+            price: getProductPrice(product),
+            originalPrice: getProductOriginalPrice(product),
+            image: product.images[0] ?? line.image,
+          } : line;
+        }));
+      }
+    } catch { /* ignore */ }
     setLoaded(true);
   }, []);
   useEffect(() => { if (loaded) localStorage.setItem(KEY, JSON.stringify(lines)); }, [lines, loaded]);
@@ -30,7 +45,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
     setLines((ls) => {
       const ex = ls.find((l) => l.slug === p.slug);
       if (ex) return ls.map((l) => (l.slug === p.slug ? { ...l, qty: l.qty + qty } : l));
-      return [...ls, { slug: p.slug, name: p.name, price: p.price, qty, image: p.images[0] ?? "" }];
+      return [...ls, { slug: p.slug, name: p.name, price: getProductPrice(p), originalPrice: getProductOriginalPrice(p), qty, image: p.images[0] ?? "" }];
     });
     toast.success(`${p.name} added to your cart`, { action: { label: "View cart", onClick: () => setOpen(true) } });
   };
