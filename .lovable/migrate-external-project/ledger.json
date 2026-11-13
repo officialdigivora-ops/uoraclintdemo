@@ -20,7 +20,7 @@
     },
     {
       "capability": "catalog and customer records",
-      "source": "Catalog, policies, testimonials, and merchandising are code-backed; no separate record store or export detected",
+      "source": "Catalog, policies, testimonials, and merchandising are code-backed; no separate record store or export detected. Source labels testimonials as placeholders, and legal text as placeholder policy text to review.",
       "outcome": "migrate_with_code",
       "status": "in_progress",
       "next_action": "Verify the imported catalog and content"
@@ -62,7 +62,7 @@
     },
     {
       "capability": "public endpoints",
-      "source": "Public sitemap.xml endpoint",
+      "source": "Public sitemap.xml endpoint includes the home page, five category pages, 16 product pages, and policy pages",
       "outcome": "migrate",
       "status": "in_progress",
       "next_action": "Verify sitemap response"

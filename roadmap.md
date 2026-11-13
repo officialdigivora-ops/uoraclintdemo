@@ -26,6 +26,6 @@
 - [x] Verify the header, images, pages and basket at desktop and phone widths.
 
 ## External storefront migration
-- [ ] Import the storefront, all routes, and required assets.
+- [x] Import the storefront, all routes, and required assets.
 - [ ] Verify preview, product browsing, basket updates, and checkout link.
 - [ ] Resolve the placeholder WhatsApp number and non-connected form delivery before claiming production readiness.
