@@ -17,5 +17,7 @@ describe("selection", () => {
     expect(m).toContain("Celeste Hoops × 2 — ₹1,198");
     expect(m).toContain("Total: ₹1,597");
   });
-  it("opens wa.me with encoded text", () => expect(checkoutUrl(lines)).toMatch(/^https:\/\/wa\.me\/\w+\?text=Hi%20UORA/));
+  it("does not create an order link with the source placeholder number", () => {
+    expect(checkoutUrl(lines)).toBeNull();
+  });
 });
