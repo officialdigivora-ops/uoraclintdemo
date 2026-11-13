@@ -88,7 +88,7 @@ function ProductPage() {
           </div>
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
             <QtyStepper value={qty} onChange={(n) => setQty(Math.max(1, n))} label="quantity" />
-            <Button className="flex-1" onClick={() => add(p, qty)}>Add to Selection</Button>
+            <Button className="flex-1" onClick={() => add(p, qty)}>Add to Cart</Button>
           </div>
           {buy ? (
             <Button asChild variant="outline" className="w-full mt-3"><a href={buy} target="_blank" rel="noreferrer"><WhatsAppIcon /> Buy on WhatsApp</a></Button>

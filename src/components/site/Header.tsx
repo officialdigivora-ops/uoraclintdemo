@@ -49,7 +49,7 @@ export function Header() {
             <Button variant="ghost" size="icon" className="flex h-11 w-11 items-center justify-center hover:text-gold" aria-label="Search" onClick={() => setSearch(true)}>
               <Search className="size-5" strokeWidth={1.25} />
             </Button>
-            <Button variant="ghost" size="icon" className="relative flex h-11 w-11 items-center justify-center hover:text-gold -mr-2" aria-label={`Your selection, ${count} items`} onClick={() => setOpen(true)}>
+            <Button variant="ghost" size="icon" className="relative flex h-11 w-11 items-center justify-center hover:text-gold -mr-2" aria-label={`Shopping cart, ${count} items`} onClick={() => setOpen(true)}>
               <ShoppingBag className="size-5" strokeWidth={1.25} />
               {count > 0 && (
                 <span className="absolute right-1 top-1 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-gold-gradient px-1 text-[10px] font-medium text-primary-foreground">{count}</span>

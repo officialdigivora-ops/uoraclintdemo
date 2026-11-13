@@ -32,7 +32,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
       if (ex) return ls.map((l) => (l.slug === p.slug ? { ...l, qty: l.qty + qty } : l));
       return [...ls, { slug: p.slug, name: p.name, price: p.price, qty, image: p.images[0] ?? "" }];
     });
-    toast.success(`${p.name} added to your selection`, { action: { label: "View", onClick: () => setOpen(true) } });
+    toast.success(`${p.name} added to your cart`, { action: { label: "View cart", onClick: () => setOpen(true) } });
   };
   const setQty = (slug: string, qty: number) =>
     setLines((ls) => (qty <= 0 ? ls.filter((l) => l.slug !== slug) : ls.map((l) => (l.slug === slug ? { ...l, qty } : l))));

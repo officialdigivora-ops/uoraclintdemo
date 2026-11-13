@@ -63,16 +63,16 @@ function Index() {
       <CrossMarquee />
 
       {/* 2. Categories */}
-      <section className="container-lux py-12 md:py-16">
-        <SectionHeading eyebrow="Explore" lead="What Are You" em="Looking For?" />
+      <section className="container-lux py-8 md:py-12">
+        <SectionHeading eyebrow="Explore" lead="What Are You" em="Looking For?" className="mb-4 lg:mb-6" />
         <CategoryShowcase />
       </section>
 
       {/* 3. Popular best sellers */}
-      <section id="bestsellers" className="container-lux py-12 md:py-16 border-t border-line">
-        <SectionHeading eyebrow="Popular Products" lead="Best" em="Sellers" />
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-8 md:gap-x-6">
-          {POPULAR_BESTSELLERS.map((product) => <ProductCard key={product.slug} product={product} />)}
+      <section id="bestsellers" className="container-lux py-8 md:py-12 border-t border-line">
+        <SectionHeading eyebrow="Popular Products" lead="Best" em="Sellers" className="mb-4 lg:mb-6" />
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-6 md:gap-x-6">
+          {POPULAR_BESTSELLERS.map((product) => <ProductCard key={product.slug} product={product} showBestSeller />)}
         </div>
       </section>
 
@@ -82,7 +82,7 @@ function Index() {
           {TRUST_BADGES.map((b, i) => {
             const I = ICONS[b.icon];
             return (
-              <div key={b.title} className={cn("flex min-h-36 flex-col items-center justify-center border-line px-3 py-4 text-center sm:min-h-40 sm:py-5", i % 2 === 0 && "border-r", i < 2 && "border-b lg:border-b-0", i === 1 && "lg:border-r", i === 2 && "lg:border-r")}>
+              <div key={b.title} className={cn("flex min-h-32 flex-col items-center justify-center border-line px-3 py-3 text-center sm:min-h-36 sm:py-4", i % 2 === 0 && "border-r", i < 2 && "border-b lg:border-b-0", i === 1 && "lg:border-r", i === 2 && "lg:border-r")}>
                 <I className="mb-2 size-7 text-gold" strokeWidth={1.25} />
                 <p className="font-display text-lg leading-tight sm:text-xl">{b.title}</p>
                 <p className="mt-1 text-sm text-muted-foreground">{b.text}</p>
@@ -93,24 +93,24 @@ function Index() {
       </section>
 
       {/* 6. Collection */}
-      <section id="shop" className="section-y container-lux border-t border-line">
-        <SectionHeading eyebrow="Available Pieces" lead="Shop The" em="Collection" />
+      <section id="shop" className="py-8 md:py-12 container-lux border-t border-line">
+        <SectionHeading eyebrow="Available Pieces" lead="Shop The" em="Collection" className="mb-4 lg:mb-6" />
         <ProductCollection />
       </section>
 
       {/* 7. Reels */}
-      <section id="shopByReel" className="section-y border-t border-line">
+      <section id="shopByReel" className="py-8 md:py-12 border-t border-line">
         <div className="container-lux">
-          <SectionHeading eyebrow="Watch & Shop" lead="Shop The" em="Reel" />
+          <SectionHeading eyebrow="Watch & Shop" lead="Shop The" em="Reel" className="mb-4 lg:mb-6" />
           <Reels />
         </div>
       </section>
 
       {/* 8. Testimonials */}
-      <section id="testimonials" className="section-y border-t border-line bg-elevated">
+      <section id="testimonials" className="py-8 md:py-12 border-t border-line bg-elevated">
         <div className="container-lux">
-          <SectionHeading eyebrow="Customer Love" lead="What Our Clients" em="Say" className="mb-6 lg:mb-6" />
-          <div className="flex items-center justify-center gap-2 mb-10">
+          <SectionHeading eyebrow="Customer Love" lead="What Our Clients" em="Say" className="mb-4 lg:mb-5" />
+          <div className="flex items-center justify-center gap-2 mb-6">
             <span className="font-display text-2xl">5 / 5</span>
             <span className="flex text-gold">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="size-4 fill-current" />)}</span>
           </div>
@@ -130,14 +130,14 @@ function Index() {
       </section>
 
       {/* 9. FAQ */}
-      <section className="section-y container-lux">
-        <SectionHeading eyebrow="Good to Know" lead="Frequently Asked" em="Questions" />
+      <section className="py-8 md:py-12 container-lux">
+        <SectionHeading eyebrow="Good to Know" lead="Frequently Asked" em="Questions" className="mb-4 lg:mb-6" />
         <Faq />
       </section>
 
       {/* 10. Contact */}
-      <section id="contact" className="section-y border-t border-line">
-        <div className="container-lux grid lg:grid-cols-2 gap-12 lg:gap-20">
+      <section id="contact" className="py-8 md:py-12 border-t border-line">
+        <div className="container-lux grid lg:grid-cols-2 gap-8 lg:gap-16">
           <Reveal>
             <p className="eyebrow mb-3">Get in Touch</p>
             <h2 className="h2-lux">Need Help Choosing? We're Here for <em>You</em></h2>
