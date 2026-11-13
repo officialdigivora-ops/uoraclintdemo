@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { SlidersHorizontal, X } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
-import { PRODUCTS, type Product } from "@/data/products";
+import { getProductPrice, PRODUCTS, type Product } from "@/data/products";
 import { CATEGORIES, getCategory, type CategorySlug } from "@/data/categories";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { ProductCard } from "./ProductCard";
@@ -17,9 +17,9 @@ const DEFAULT: Filters = { category: "all", price: "all", sort: "featured" };
 
 export function applyFilters(list: Product[], f: Filters) {
   let r = list.filter((p) => (f.category === "all" || p.category === f.category) &&
-    (f.price === "all" || (f.price === "lt500" ? p.price < 500 : f.price === "500-699" ? p.price >= 500 && p.price <= 699 : p.price >= 700)));
-  if (f.sort === "asc") r = [...r].sort((a, b) => a.price - b.price);
-  if (f.sort === "desc") r = [...r].sort((a, b) => b.price - a.price);
+    (f.price === "all" || (f.price === "lt500" ? getProductPrice(p) < 500 : f.price === "500-699" ? getProductPrice(p) >= 500 && getProductPrice(p) <= 699 : getProductPrice(p) >= 700)));
+  if (f.sort === "asc") r = [...r].sort((a, b) => getProductPrice(a) - getProductPrice(b));
+  if (f.sort === "desc") r = [...r].sort((a, b) => getProductPrice(b) - getProductPrice(a));
   if (f.sort === "name") r = [...r].sort((a, b) => a.name.localeCompare(b.name));
   return r;
 }

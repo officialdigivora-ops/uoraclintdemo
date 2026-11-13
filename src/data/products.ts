@@ -56,4 +56,6 @@ export const PRODUCTS: Product[] = [
 ];
 
 export const getProduct = (slug: string) => PRODUCTS.find((x) => x.slug === slug);
+export const getProductPrice = (product: Product) => product.bestSeller ? Math.round(product.price * 0.8) : product.price;
+export const getProductOriginalPrice = (product: Product) => product.bestSeller ? product.price : undefined;
 export const formatINR = (n: number) => `₹${n.toLocaleString("en-IN")}`;
