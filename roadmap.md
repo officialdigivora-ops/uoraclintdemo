@@ -27,5 +27,6 @@
 
 ## External storefront migration
 - [x] Import the storefront, all routes, and required assets.
-- [ ] Verify preview, product browsing, basket updates, and checkout link.
+- [x] Verify preview, product browsing, basket updates, sitemap, and public policy routes.
 - [ ] Resolve the placeholder WhatsApp number and non-connected form delivery before claiming production readiness.
+- [ ] Confirm source domain and live cutover timing.
