@@ -42,10 +42,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => { if (loaded) localStorage.setItem(KEY, JSON.stringify(lines)); }, [lines, loaded]);
 
   const add = (p: Product, qty = 1) => {
+    const price = getProductPrice(p);
+    const originalPrice = getProductOriginalPrice(p);
     setLines((ls) => {
       const ex = ls.find((l) => l.slug === p.slug);
-      if (ex) return ls.map((l) => (l.slug === p.slug ? { ...l, qty: l.qty + qty } : l));
-      return [...ls, { slug: p.slug, name: p.name, price: getProductPrice(p), originalPrice: getProductOriginalPrice(p), qty, image: p.images[0] ?? "" }];
+      if (ex) return ls.map((l) => (l.slug === p.slug ? { ...l, name: p.name, price, originalPrice, qty: l.qty + qty } : l));
+      return [...ls, { slug: p.slug, name: p.name, price, originalPrice, qty, image: p.images[0] ?? "" }];
     });
     toast.success(`${p.name} added to your cart`, { action: { label: "View cart", onClick: () => setOpen(true) } });
   };
