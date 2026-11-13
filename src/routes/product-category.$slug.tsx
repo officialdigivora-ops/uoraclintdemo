@@ -34,7 +34,7 @@ function CategoryPage() {
     <div className="container-lux section-y">
       <Breadcrumbs current={c.label} />
       <h1 className="h1-lux">{c.heading[0]} <em>{c.heading[1]}</em></h1>
-      <p className="text-muted-foreground mt-4 mb-10 max-w-lg">{c.intro}</p>
+      <p className="text-muted-foreground mt-4 mb-10 min-h-[3.25rem] max-w-lg">{c.intro}</p>
       <ProductCollection key={c.slug} lockCategory={c.slug} />
     </div>
   );
