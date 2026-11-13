@@ -58,7 +58,7 @@ export function CartDrawer() {
                     </div>
                     <p className="mb-2 flex flex-wrap items-baseline gap-x-2 text-sm">
                       <span className="text-gold">{formatINR(l.price)}</span>
-                      {l.originalPrice !== undefined && <span className="text-xs text-muted-foreground line-through">{formatINR(l.originalPrice)}</span>}
+                      {l.originalPrice !== undefined && <><span className="text-xs text-muted-foreground line-through">{formatINR(l.originalPrice)}</span><span className="rounded-sm bg-soft px-1.5 py-0.5 text-[10px] font-semibold text-gold">20% OFF</span></>}
                     </p>
                     <QtyStepper value={l.qty} onChange={(n) => setQty(l.slug, n)} label={l.name} />
                   </div>

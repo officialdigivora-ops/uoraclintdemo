@@ -11,6 +11,15 @@ describe("Bestseller sale prices", () => {
     expect(getProductOriginalPrice(product)).toBe(699);
   });
 
+  it("applies the 20% sale price to every Bestseller", () => {
+    const bestsellers = ["north-star-pendant", "aurelia-drops", "dome-signet-ring", "heritage-kada", "mariner-chain-bracelet", "celeste-hoops", "layered-muse-necklace", "paperclip-bracelet"];
+    for (const slug of bestsellers) {
+      const product = getProduct(slug);
+      expect(product?.bestSeller).toBe(true);
+      if (product) expect(getProductPrice(product)).toBe(Math.round(product.price * 0.8));
+    }
+  });
+
   it("keeps regular products at their original price", () => {
     const product = getProduct("twist-stacker-ring");
     expect(product).toBeDefined();

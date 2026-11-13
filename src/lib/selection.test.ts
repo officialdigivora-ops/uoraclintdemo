@@ -17,6 +17,12 @@ describe("selection", () => {
     expect(m).toContain("Celeste Hoops × 2 — ₹1,198");
     expect(m).toContain("Total: ₹1,597");
   });
+  it("uses the discounted Bestseller price for cart and order totals", () => {
+    const discountedLine = [{ slug: "north-star-pendant", name: "North Star Pendant", price: 559, originalPrice: 699, qty: 2, image: "" }];
+    expect(subtotal(discountedLine)).toBe(1118);
+    expect(buildWhatsAppMessage(discountedLine)).toContain("North Star Pendant × 2 — ₹1,118");
+    expect(buildWhatsAppMessage(discountedLine)).toContain("Total: ₹1,118");
+  });
   it("does not create an order link with the source placeholder number", () => {
     expect(checkoutUrl(lines)).toBeNull();
   });
