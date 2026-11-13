@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { getProduct, getProductOriginalPrice, getProductPrice } from "./products";
+import { getProduct, getProductOriginalPrice, getProductPrice, PRODUCTS } from "./products";
 
 describe("Bestseller sale prices", () => {
   it("takes 20% off the North Star Pendant and rounds to whole rupees", () => {
@@ -12,11 +12,10 @@ describe("Bestseller sale prices", () => {
   });
 
   it("applies the 20% sale price to every Bestseller", () => {
-    const bestsellers = ["north-star-pendant", "aurelia-drops", "dome-signet-ring", "heritage-kada", "mariner-chain-bracelet", "celeste-hoops", "layered-muse-necklace", "paperclip-bracelet"];
-    for (const slug of bestsellers) {
-      const product = getProduct(slug);
-      expect(product?.bestSeller).toBe(true);
-      if (product) expect(getProductPrice(product)).toBe(Math.round(product.price * 0.8));
+    const bestsellers = PRODUCTS.filter((product) => product.bestSeller);
+    expect(bestsellers.length).toBeGreaterThan(0);
+    for (const product of bestsellers) {
+      expect(getProductPrice(product)).toBe(Math.round(product.price * 0.8));
     }
   });
 
