@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 
 export function ProductPrice({ price, originalPrice, className, size = "regular" }: {
   price: number;
-  originalPrice?: number;
+  originalPrice?: number | undefined;
   className?: string;
   size?: "compact" | "regular" | "large";
 }) {
