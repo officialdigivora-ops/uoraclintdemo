@@ -129,12 +129,16 @@
 
 .header-logo { width: 116px; height: 100%; overflow: visible; }
 .header-brand-stage { position: relative; display: flex; width: 116px; height: 44px; align-items: center; justify-content: center; overflow: hidden; }
-.header-brand-mark { position: absolute; width: 110px; height: auto; max-height: 40px; object-fit: contain; transition: transform 500ms ease, opacity 350ms ease; }
-.header-brand-mark-hidden { transform: translateX(-140%); opacity: 0; }
-.header-brand-tagline { position: absolute; transform: translateX(140%); opacity: 0; white-space: nowrap; color: var(--gold); font-family: var(--font-display); font-size: 19px; font-weight: 600; line-height: 1; transition: transform 500ms ease, opacity 350ms ease; }
-.header-brand-tagline-visible { transform: translateX(0); opacity: 1; }
+.header-brand-artwork { position: absolute; width: 112px; aspect-ratio: 1794 / 435; overflow: hidden; }
+.header-brand-image { display: block; width: 100%; height: auto; max-width: none; }
+.header-brand-artwork-tagline .header-brand-image { transform: translateY(-50%); }
+.header-brand-entering { animation: brand-arrive 200ms cubic-bezier(.12,.8,.18,1) both; }
+.header-brand-holding { transform: translateX(0); }
+.header-brand-exiting { animation: brand-depart 200ms cubic-bezier(.7,0,.9,.2) both; }
+@keyframes brand-arrive { from { transform: translateX(130%); } to { transform: translateX(0); } }
+@keyframes brand-depart { from { transform: translateX(0); } to { transform: translateX(-130%); } }
 @media (prefers-reduced-motion: reduce) {
-  .header-brand-mark, .header-brand-tagline { transition: none; }
+  .header-brand-artwork { animation: none; transform: none; }
 }
 .jewellery-hero { min-height: 580px; }
 .jewellery-hero > img { object-position: 65% center; }
