@@ -45,7 +45,7 @@ function Index() {
       <section className="relative overflow-hidden">
         <div className="jewellery-hero relative flex items-end md:items-center overflow-hidden bg-elevated">
           <img src={hero} alt="Gold jewellery styled with a crisp white shirt" width={1920} height={1024} className="absolute inset-0 h-full w-full object-cover" fetchPriority="high" />
-          <div className="container-lux relative z-10 pb-9 pt-12 md:py-16">
+          <div className="container-lux relative z-10 pb-20 pt-12 md:pt-16 md:pb-24">
             <Reveal className="max-w-md">
               <h1 className="h1-lux">UORA</h1>
               <p className="font-display text-3xl mt-2">Own the <em className="text-gold">Rare</em></p>
@@ -59,7 +59,7 @@ function Index() {
         </div>
       </section>
 
-      <div className="relative z-20 -mt-14">
+      <div className="relative z-20 -mt-11 md:-mt-14">
         <CrossMarquee />
       </div>
 
