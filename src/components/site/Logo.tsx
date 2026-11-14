@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import headerWordmark from "@/assets/uora-header-wordmark.png";
+import headerArtwork from "@/assets/uora-gold-logo-high-quality.png";
+import { BRAND_TIMING, nextBrandFrame, type BrandPhase } from "@/lib/brand-animation";
 
 // Keep a live-text fallback for the footer while the header uses the supplied brand art.
 export function Wordmark({ className }: { className?: string }) {
@@ -13,26 +14,21 @@ export function Wordmark({ className }: { className?: string }) {
 }
 
 export function Logo({ size = "header" }: { size?: "header" | "footer" }) {
-  const [showTagline, setShowTagline] = useState(false);
+  const [frame, setFrame] = useState<{ phase: BrandPhase; tagline: boolean }>({ phase: "entering", tagline: false });
 
   useEffect(() => {
     if (size !== "header") return;
-    const interval = window.setInterval(() => setShowTagline((current) => !current), 3500);
-    return () => window.clearInterval(interval);
-  }, [size]);
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const timeout = window.setTimeout(() => setFrame(nextBrandFrame(frame.phase, frame.tagline)), BRAND_TIMING[frame.phase]);
+    return () => window.clearTimeout(timeout);
+  }, [size, frame]);
 
   return (
     <Link to="/" aria-label="UORA — home" className={cn("flex items-center justify-center", size === "header" ? "header-logo" : "flex-col")}>
       {size === "header" ? (
-        <span className="header-brand-stage" aria-live="polite">
-          <img
-            src={headerWordmark}
-            alt="UORA"
-            className={cn("header-brand-mark", showTagline && "header-brand-mark-hidden")}
-            aria-hidden={showTagline}
-          />
-          <span className={cn("header-brand-tagline", showTagline && "header-brand-tagline-visible")} aria-hidden={!showTagline}>
-            Own the Rare
+        <span className="header-brand-stage" aria-hidden="true">
+          <span key={String(frame.tagline)} className={cn("header-brand-artwork", `header-brand-${frame.phase}`, frame.tagline && "header-brand-artwork-tagline")}>
+            <img src={headerArtwork} alt="" className="header-brand-image" />
           </span>
         </span>
       ) : <Wordmark className="text-5xl" />}

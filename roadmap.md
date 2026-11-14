@@ -3,6 +3,11 @@
 - [x] Normalize jar image bounds, enlarge mobile categories and scale the centred category during scrolling.
 - [x] Check all requested screen widths, category scrolling and adding products to selection.
 
+## Gold header logo loop
+- [x] Recreate the supplied gold logo and tagline as one high-quality transparent image.
+- [x] Animate each design from right to centre, hold three seconds, and exit left.
+- [x] Verify both designs, looping, transparency, and phone/desktop display.
+
 # Restored jar categories
 - [x] Restore crossed marquee before categories and keep popular best sellers after categories.
 - [x] Restore jewellery inside glass jars with transparent backgrounds, without arrows.
