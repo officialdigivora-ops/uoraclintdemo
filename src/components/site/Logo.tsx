@@ -1,7 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
-import headerArtwork from "@/assets/uora-gold-logo-high-quality.png";
+import headerArtwork from "@/assets/uora-gold-logo-frames.png";
 import { BRAND_TIMING, nextBrandFrame, type BrandPhase } from "@/lib/brand-animation";
 
 // Keep a live-text fallback for the footer while the header uses the supplied brand art.
