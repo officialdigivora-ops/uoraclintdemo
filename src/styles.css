@@ -127,9 +127,10 @@
 @keyframes kenburns { from { transform: scale(1); } to { transform: scale(1.12); } }
 @utility animate-kenburns { animation: kenburns 8s ease-out forwards; }
 
-.header-logo { width: 116px; height: 100%; overflow: visible; }
-.header-brand-stage { position: relative; display: flex; width: 116px; height: 44px; align-items: center; justify-content: center; overflow: hidden; }
-.header-brand-artwork { position: absolute; width: 112px; aspect-ratio: 1794 / 435; overflow: hidden; }
+.header-logo { width: 144px; height: 100%; overflow: visible; }
+.header-brand-stage { position: relative; display: flex; width: 144px; height: 44px; align-items: center; justify-content: center; overflow: hidden; }
+.header-brand-artwork { position: absolute; width: 116px; aspect-ratio: 4 / 1; overflow: hidden; }
+.header-brand-artwork-tagline { width: 144px; }
 .header-brand-image { display: block; width: 100%; height: auto; max-width: none; }
 .header-brand-artwork-tagline .header-brand-image { transform: translateY(-50%); }
 .header-brand-entering { animation: brand-arrive 200ms cubic-bezier(.12,.8,.18,1) both; }
