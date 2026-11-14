@@ -6,7 +6,7 @@
 ## Gold header logo loop
 - [x] Recreate the supplied gold logo and tagline as one high-quality transparent image.
 - [x] Animate each design from right to centre, hold three seconds, and exit left.
-- [ ] Verify both designs, looping, transparency, and phone/desktop display.
+- [x] Verify both designs, looping, transparency, and phone/desktop display.
 
 # Restored jar categories
 - [x] Restore crossed marquee before categories and keep popular best sellers after categories.
