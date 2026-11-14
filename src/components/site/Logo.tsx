@@ -17,7 +17,7 @@ export function Logo({ size = "header" }: { size?: "header" | "footer" }) {
 
   useEffect(() => {
     if (size !== "header") return;
-    const interval = window.setInterval(() => setShowTagline((current) => !current), 6000);
+    const interval = window.setInterval(() => setShowTagline((current) => !current), 3000);
     return () => window.clearInterval(interval);
   }, [size]);
 
