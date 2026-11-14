@@ -73,7 +73,7 @@ function Index() {
       <section id="bestsellers" className="container-lux py-8 md:py-12 border-t border-line">
         <SectionHeading eyebrow="Popular Products" lead="Best" em="Sellers" className="mb-4 lg:mb-6" />
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-3 gap-y-6 md:gap-x-6">
-          {POPULAR_BESTSELLERS.map((product) => <ProductCard key={product.slug} product={product} showBestSeller />)}
+          {POPULAR_BESTSELLERS.map((product) => <ProductCard key={product.slug} product={product} />)}
         </div>
       </section>
 

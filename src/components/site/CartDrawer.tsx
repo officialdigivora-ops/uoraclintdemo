@@ -7,6 +7,7 @@ import { checkoutUrl, remainingForFreeShipping, subtotal } from "@/lib/selection
 import { FREE_SHIPPING_THRESHOLD } from "@/config/site";
 import { formatINR } from "@/data/products";
 import { WhatsAppIcon } from "./icons";
+import { ProductPrice } from "./ProductPrice";
 
 export function QtyStepper({ value, onChange, label }: { value: number; onChange: (n: number) => void; label: string }) {
   return (
@@ -56,10 +57,7 @@ export function CartDrawer() {
                       <p className="font-display text-lg leading-tight">{l.name}</p>
                       <button onClick={() => remove(l.slug)} aria-label={`Remove ${l.name}`} className="-mt-2 -mr-3 h-11 w-11 flex items-center justify-center text-muted-foreground hover:text-gold"><X className="size-4" /></button>
                     </div>
-                    <p className="mb-2 flex flex-wrap items-baseline gap-x-2 text-sm">
-                      <span className="text-gold">{formatINR(l.price)}</span>
-                      {l.originalPrice !== undefined && <><span className="text-xs text-muted-foreground line-through">{formatINR(l.originalPrice)}</span><span className="rounded-sm bg-soft px-1.5 py-0.5 text-[10px] font-semibold text-gold">20% OFF</span></>}
-                    </p>
+                    <ProductPrice className="mb-2 justify-start" size="compact" price={l.price} originalPrice={l.originalPrice} />
                     <QtyStepper value={l.qty} onChange={(n) => setQty(l.slug, n)} label={l.name} />
                   </div>
                 </li>

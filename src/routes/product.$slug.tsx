@@ -83,7 +83,7 @@ function ProductPage() {
         <div>
           <p className="eyebrow mb-3">{cat.label}</p>
           <h1 className="font-display text-4xl lg:text-5xl">{p.name}</h1>
-          <ProductPrice className="justify-start mt-3" size="large" price={price} originalPrice={getProductOriginalPrice(p)} />
+          <ProductPrice className="justify-start mt-3" size="large" price={price} originalPrice={getProductOriginalPrice(p)} showDiscount />
           <p className="text-muted-foreground mt-5">{p.description}</p>
           <div className="flex flex-wrap gap-2 mt-6">
             {MATERIALS.map((m) => <span key={m} className="rounded-full border border-line px-3 py-1.5 text-[11px] uppercase tracking-[0.14em]">{m}</span>)}
