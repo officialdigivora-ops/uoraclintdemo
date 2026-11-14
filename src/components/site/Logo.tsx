@@ -1,7 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
+import { useEffect, useState } from "react";
+import headerWordmark from "@/assets/uora-header-wordmark.png";
 
-// Live typography keeps the wordmark crisp at every screen size.
+// Keep a live-text fallback for the footer while the header uses the supplied brand art.
 export function Wordmark({ className }: { className?: string }) {
   return (
     <span className={cn("font-display font-semibold tracking-[0.18em] text-gold-gradient leading-none", className)}>
@@ -11,9 +13,29 @@ export function Wordmark({ className }: { className?: string }) {
 }
 
 export function Logo({ size = "header" }: { size?: "header" | "footer" }) {
+  const [showTagline, setShowTagline] = useState(false);
+
+  useEffect(() => {
+    if (size !== "header") return;
+    const interval = window.setInterval(() => setShowTagline((current) => !current), 6000);
+    return () => window.clearInterval(interval);
+  }, [size]);
+
   return (
-    <Link to="/" aria-label="UORA — home" className={cn("flex flex-col items-center", size === "header" && "header-logo")}>
-      <Wordmark className={size === "footer" ? "text-5xl" : "logo-metal text-[34px] lg:text-[42px]"} />
+    <Link to="/" aria-label="UORA — home" className={cn("flex items-center justify-center", size === "header" ? "header-logo" : "flex-col")}>
+      {size === "header" ? (
+        <span className="header-brand-stage" aria-live="polite">
+          <img
+            src={headerWordmark}
+            alt="UORA"
+            className={cn("header-brand-mark", showTagline && "header-brand-mark-hidden")}
+            aria-hidden={showTagline}
+          />
+          <span className={cn("header-brand-tagline", showTagline && "header-brand-tagline-visible")} aria-hidden={!showTagline}>
+            Own the Rare
+          </span>
+        </span>
+      ) : <Wordmark className="text-5xl" />}
       {size === "footer" && <span className="eyebrow mt-1 text-muted-foreground text-[11px]">
         Own the Rare
       </span>}
