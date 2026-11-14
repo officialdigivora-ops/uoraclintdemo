@@ -27,7 +27,7 @@ export function CartDrawer() {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetContent side="right" className="w-full sm:max-w-[420px] bg-elevated border-line p-0 flex flex-col gap-0">
+      <SheetContent side="right" className="w-[calc(100vw-2rem)] sm:max-w-[420px] bg-elevated border-line p-0 flex flex-col gap-0">
         <div className="px-6 pt-6 pb-4 border-b border-line">
           <SheetTitle className="font-display text-3xl font-medium">Your <em className="not-italic text-gold-gradient italic">Cart</em></SheetTitle>
           <SheetDescription className="sr-only">Items in your cart</SheetDescription>

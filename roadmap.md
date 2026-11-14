@@ -20,9 +20,9 @@
 - [x] Verify category navigation, scrolling, and phone/desktop layouts.
 
 ## Bestseller discount pricing
-- [ ] Apply the 20% Bestseller discount consistently across prices, cart, and order totals.
-- [ ] Add clear crossed-out original prices, discounted prices, and a polished Bestseller tag.
-- [ ] Verify discount arithmetic, product screens, cart totals, and order message.
+- [x] Apply the 20% Bestseller discount consistently across prices, cart, and order totals.
+- [x] Add clear crossed-out original prices, discounted prices, and a polished Bestseller tag.
+- [x] Verify discount arithmetic, product screens, cart totals, and order message.
 
 ## Product card and spacing cleanup
 - [x] Tighten homepage section spacing and reduce the mobile hero height.
