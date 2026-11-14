@@ -47,7 +47,6 @@ function Index() {
           <img src={hero} alt="Gold jewellery styled with a crisp white shirt" width={1920} height={1024} className="absolute inset-0 h-full w-full object-cover" fetchPriority="high" />
           <div className="container-lux relative z-10 pb-9 pt-12 md:py-16">
             <Reveal className="max-w-md">
-              <p className="eyebrow mb-3">Everyday, Extraordinary</p>
               <h1 className="h1-lux">UORA</h1>
               <p className="font-display text-3xl mt-2">Own the <em className="text-gold">Rare</em></p>
               <p className="mt-4 text-muted-foreground max-w-sm">18K gold plated, anti-tarnish jewellery crafted for everyday brilliance — and the compliments that follow.</p>
@@ -60,7 +59,9 @@ function Index() {
         </div>
       </section>
 
-      <CrossMarquee />
+      <div className="relative z-20 -mt-14">
+        <CrossMarquee />
+      </div>
 
       {/* 2. Categories */}
       <section className="container-lux py-8 md:py-12">
