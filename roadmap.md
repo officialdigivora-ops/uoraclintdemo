@@ -1,4 +1,6 @@
 # Responsive merchandising refresh
+- [ ] Refine all five luxury model portraits with jewellery clearly highlighted.
+- [ ] Reveal live quantity controls after Add to Cart and animate the header cart; verify quantities and totals.
 - [x] Create five model-led jewellery slider images with product names behind each model, remove slogan/detail overlays, and verify automatic rotation on phone and desktop.
 - [x] Remove top-section shopping buttons, reduce logo size, and add an automatic edge-to-edge photo carousel with reference-style icons and curves.
 - [x] Replace the rotating header logo with the exact static logo and slogan in theme green; align the top section with the supplied reference without arrows.
