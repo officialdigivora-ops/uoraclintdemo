@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart";
 import { checkoutUrl, remainingForFreeShipping, subtotal } from "@/lib/selection";
 import { FREE_SHIPPING_THRESHOLD } from "@/config/site";
-import { formatINR } from "@/data/products";
+import { formatINR, getProduct } from "@/data/products";
 import { WhatsAppIcon } from "./icons";
 import { ProductPrice } from "./ProductPrice";
 import { QuantityControl } from "./QuantityControl";
@@ -21,7 +21,7 @@ export function CartDrawer() {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
-      <SheetContent side="right" className="w-[calc(100vw-2rem)] sm:max-w-[420px] bg-elevated border-line p-0 flex flex-col gap-0">
+      <SheetContent side="right" className="w-[calc(100vw-1rem)] sm:max-w-[460px] bg-elevated border-line p-0 flex flex-col gap-0">
         <div className="px-6 pt-6 pb-4 border-b border-line">
           <SheetTitle className="font-display text-3xl font-medium">Your <em className="not-italic text-gold-gradient italic">Cart</em></SheetTitle>
           <SheetDescription className="sr-only">Items in your cart</SheetDescription>
@@ -33,7 +33,7 @@ export function CartDrawer() {
           </div>
         </div>
 
-        <div className="flex-1 overflow-y-auto px-6">
+        <div className="flex-1 overflow-y-auto px-4 sm:px-6">
           {lines.length === 0 ? (
             <div className="py-16 text-center">
               <p className="font-display text-2xl">Your cart is empty</p>
@@ -41,17 +41,22 @@ export function CartDrawer() {
               <Button variant="outline" asChild onClick={() => setOpen(false)}><Link to="/" hash="shop">Browse pieces</Link></Button>
             </div>
           ) : (
-            <ul>
+            <ul className="space-y-3 py-4">
               {lines.map((l) => (
-                <li key={l.slug} className="flex gap-4 py-5 border-b border-line">
-                  <img src={l.image} alt={l.name} className="h-24 w-20 object-cover shrink-0" />
-                  <div className="flex-1 min-w-0">
-                    <div className="flex justify-between gap-2">
-                      <p className="font-display text-lg leading-tight">{l.name}</p>
-                      <Button variant="ghost" size="icon" onClick={() => remove(l.slug)} aria-label={`Remove ${l.name}`} className="-mt-2 -mr-3 h-11 w-11 flex items-center justify-center text-muted-foreground hover:text-gold"><X className="size-4" /></Button>
+                <li key={l.slug} className="relative grid grid-cols-[96px_minmax(0,1fr)] gap-3 rounded-lg border border-line bg-background p-3 sm:grid-cols-[112px_minmax(0,1fr)] sm:gap-4">
+                  <Link to="/product/$slug" params={{ slug: l.slug }} onClick={() => setOpen(false)} className="self-center overflow-hidden rounded-md bg-soft">
+                    <img src={l.image} alt={l.name} width={224} height={280} className="aspect-[4/5] w-full object-cover transition-transform duration-500 hover:scale-105" />
+                  </Link>
+                  <div className="flex min-w-0 flex-col justify-center">
+                    <div className="pr-6">
+                      <Link to="/product/$slug" params={{ slug: l.slug }} onClick={() => setOpen(false)} className="block font-sans text-sm font-semibold leading-5 hover:text-primary">{l.name}</Link>
+                      <Button variant="ghost" size="icon" onClick={() => remove(l.slug)} aria-label={`Remove ${l.name}`} className="absolute right-0 top-0 h-9 w-9 text-muted-foreground hover:text-gold"><X className="size-3.5!" /></Button>
                     </div>
-                    <ProductPrice className="mb-2 justify-start" size="compact" price={l.price} originalPrice={l.originalPrice} />
-                    <QtyStepper value={l.qty} onChange={(n) => setQty(l.slug, n)} label={l.name} className="w-32" />
+                    <p className="mt-1 line-clamp-2 text-[10px] leading-4 text-muted-foreground sm:text-xs">{getProduct(l.slug)?.description}</p>
+                    <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
+                      <ProductPrice className="justify-start" size="compact" price={l.price} originalPrice={l.originalPrice} />
+                      <QtyStepper value={l.qty} onChange={(n) => setQty(l.slug, n)} label={l.name} className="cart-item-quantity ml-auto" />
+                    </div>
                   </div>
                 </li>
               ))}
