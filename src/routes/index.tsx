@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { BadgeCheck, Droplets, Leaf, Truck, Star } from "lucide-react";
-import heroPointer from "@/assets/uora-editorial.jpg.asset.json";
+import { HeroSlider } from "@/components/site/HeroSlider";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
@@ -17,8 +17,6 @@ import { TESTIMONIALS } from "@/data/testimonials";
 import { TRUST_BADGES } from "@/data/content";
 import { INSTAGRAM_HANDLE, INSTAGRAM_URL, whatsappLink } from "@/config/site";
 import { cn } from "@/lib/utils";
-
-const hero = (heroPointer as unknown as { url: string }).url;
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -42,22 +40,7 @@ function Index() {
   return (
     <>
       {/* 1. Hero */}
-      <section className="relative overflow-hidden">
-        <div className="jewellery-hero relative flex items-start overflow-hidden bg-elevated">
-          <img src={hero} alt="Gold jewellery styled with a crisp white shirt" width={1920} height={1024} className="absolute inset-0 h-full w-full object-cover" fetchPriority="high" />
-          <div className="container-lux relative z-10 pb-12 pt-5 md:pt-8 text-center">
-            <div className="mx-auto max-w-lg">
-              <h1 className="h1-lux">UORA</h1>
-              <p className="font-display text-3xl mt-2">Own the <em className="text-gold">Rare</em></p>
-              <p className="mt-2 mx-auto text-sm text-muted-foreground max-w-sm">18K gold plated, anti-tarnish jewellery crafted for everyday brilliance.</p>
-              <div className="mt-4 flex justify-center flex-wrap gap-3">
-                <Button asChild size="lg"><Link to="/" hash="shop">Shop Now</Link></Button>
-                <Button asChild size="lg" variant="outline"><Link to="/" hash="shopByReel">Watch Reels</Link></Button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <HeroSlider />
 
       <div className="relative z-20 -mt-11 md:-mt-14">
         <CrossMarquee />
