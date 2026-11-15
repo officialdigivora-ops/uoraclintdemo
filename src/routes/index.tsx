@@ -98,7 +98,7 @@ function Index() {
             <span className="font-display text-2xl">5 / 5</span>
             <span className="flex text-gold">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="size-4 fill-current" />)}</span>
           </div>
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar -mx-4 px-4 md:mx-0 md:px-0">
+          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar pl-3 pr-1 scroll-pl-3 md:pl-0 md:pr-0 md:scroll-pl-0">
             {TESTIMONIALS.map((t) => (
               <figure key={t.name} className="snap-start shrink-0 w-[82%] md:w-[calc((100%-2rem)/3)] border border-line bg-background p-6 lg:p-8 flex flex-col">
                 <span className="flex text-gold mb-4">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="size-3.5 fill-current" />)}</span>

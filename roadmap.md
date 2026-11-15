@@ -1,4 +1,5 @@
 # Responsive merchandising refresh
+- [ ] Add left inset to customer reviews and restyle cart products with larger photographs, refined fonts and reference-style quantity controls.
 - [x] Refine all five luxury model portraits with jewellery clearly highlighted.
 - [x] Reveal live quantity controls after Add to Cart and animate the header cart; verify quantities and totals.
 - [x] Create five model-led jewellery slider images with product names behind each model, remove slogan/detail overlays, and verify automatic rotation on phone and desktop.

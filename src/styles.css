@@ -130,6 +130,10 @@
 .header-logo { width: 116px; height: 100%; overflow: visible; }
 .quantity-control { animation: quantity-reveal 220ms ease-out; }
 .quantity-value { animation: quantity-number 220ms ease-out; }
+.cart-item-quantity { height: 36px; width: 112px; border-radius: 6px; background: var(--primary); color: var(--primary-foreground); }
+.cart-item-quantity > button { height: 36px; width: 36px; border-radius: 6px; }
+.cart-item-quantity > button:hover { background: var(--gold-light); color: var(--primary-foreground); }
+.cart-item-quantity > span { min-width: 32px; }
 .cart-count-animate { animation: cart-item-drop 650ms cubic-bezier(.2,.75,.3,1) both; }
 .cart-basket-animate { transform-origin: center bottom; animation: cart-basket-bounce 650ms ease-in-out; }
 @keyframes quantity-reveal { from { opacity: .3; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
