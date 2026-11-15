@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, Search, ShoppingBag } from "lucide-react";
+import { Menu, Search, ShoppingCart } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { Logo, Monogram } from "./Logo";
 import { NAV } from "./nav";
@@ -28,13 +28,12 @@ export function Header() {
 
   return (
     <>
-      <header className={cn("sticky top-0 z-40 overflow-hidden rounded-t-[20px] border-b border-line transition-all duration-300",
-        scrolled ? "bg-background" : "bg-background/80 backdrop-blur-md")}>
+      <header className={cn("sticky top-0 z-40 overflow-hidden rounded-t-[24px] border-b border-line transition-all duration-300 bg-background")}>
         <div className={cn("container-lux grid grid-cols-[1fr_auto_1fr] items-center transition-all duration-300",
           scrolled ? "h-[64px] lg:h-[72px]" : "h-[76px] lg:h-[84px]")}>
           <div className="flex items-center">
             <Button variant="ghost" size="icon" className="lg:hidden -ml-2 flex h-11 w-11 items-center justify-center text-foreground" aria-label="Open menu" onClick={() => setMenu(true)}>
-              <Menu className="size-6" strokeWidth={1.25} />
+              <Menu className="size-7" strokeWidth={1.6} />
             </Button>
             <nav className="hidden lg:flex gap-7" aria-label="Main">
               {NAV.map((n) => (
@@ -47,10 +46,10 @@ export function Header() {
           <Logo />
           <div className="flex items-center justify-end gap-1">
             <Button variant="ghost" size="icon" className="flex h-11 w-11 items-center justify-center hover:text-gold" aria-label="Search" onClick={() => setSearch(true)}>
-              <Search className="size-5" strokeWidth={1.25} />
+              <Search className="size-7" strokeWidth={1.6} />
             </Button>
             <Button variant="ghost" size="icon" className="relative flex h-11 w-11 items-center justify-center hover:text-gold -mr-2" aria-label={`Shopping cart, ${count} items`} onClick={() => setOpen(true)}>
-              <ShoppingBag className="size-5" strokeWidth={1.25} />
+              <ShoppingCart className="size-7" strokeWidth={1.6} />
               {count > 0 && (
                 <span className="absolute right-1 top-1 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-gold-gradient px-1 text-[10px] font-medium text-primary-foreground">{count}</span>
               )}
