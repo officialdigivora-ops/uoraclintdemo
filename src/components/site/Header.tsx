@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { Menu, Search, ShoppingCart } from "lucide-react";
+import { Menu, Search } from "lucide-react";
 import { Sheet, SheetContent, SheetTitle } from "@/components/ui/sheet";
 import { Logo, Monogram } from "./Logo";
 import { NAV } from "./nav";
@@ -11,12 +11,13 @@ import { WhatsAppIcon, InstagramIcon } from "./icons";
 import { INSTAGRAM_URL, whatsappLink } from "@/config/site";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
+import { AnimatedCartIcon } from "./AnimatedCartIcon";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
   const [search, setSearch] = useState(false);
-  const { count, setOpen } = useCart();
+  const { count, revision, setOpen } = useCart();
   const contactLink = whatsappLink();
 
   useEffect(() => {
@@ -49,10 +50,7 @@ export function Header() {
               <Search className="size-7!" strokeWidth={1.6} />
             </Button>
             <Button variant="ghost" size="icon" className="relative flex h-11 w-11 items-center justify-center hover:text-gold -mr-2" aria-label={`Shopping cart, ${count} items`} onClick={() => setOpen(true)}>
-              <ShoppingCart className="size-7!" strokeWidth={1.6} />
-              {count > 0 && (
-                <span className="absolute right-1 top-1 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-gold-gradient px-1 text-[10px] font-medium text-primary-foreground">{count}</span>
-              )}
+              <AnimatedCartIcon count={count} revision={revision} />
             </Button>
           </div>
         </div>

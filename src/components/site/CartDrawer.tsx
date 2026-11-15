@@ -1,4 +1,4 @@
-import { Minus, Plus, X } from "lucide-react";
+import { X } from "lucide-react";
 import { Link } from "@tanstack/react-router";
 import { Sheet, SheetContent, SheetTitle, SheetDescription } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
@@ -8,16 +8,9 @@ import { FREE_SHIPPING_THRESHOLD } from "@/config/site";
 import { formatINR } from "@/data/products";
 import { WhatsAppIcon } from "./icons";
 import { ProductPrice } from "./ProductPrice";
+import { QuantityControl } from "./QuantityControl";
 
-export function QtyStepper({ value, onChange, label }: { value: number; onChange: (n: number) => void; label: string }) {
-  return (
-    <div className="inline-flex items-center border border-line h-11">
-      <button className="h-11 w-11 flex items-center justify-center hover:text-gold" aria-label={`Decrease ${label}`} onClick={() => onChange(value - 1)}><Minus className="size-3.5" /></button>
-      <span className="w-8 text-center text-sm" aria-live="polite">{value}</span>
-      <button className="h-11 w-11 flex items-center justify-center hover:text-gold" aria-label={`Increase ${label}`} onClick={() => onChange(value + 1)}><Plus className="size-3.5" /></button>
-    </div>
-  );
-}
+export const QtyStepper = QuantityControl;
 
 export function CartDrawer() {
   const { lines, open, setOpen, setQty, remove } = useCart();
@@ -55,10 +48,10 @@ export function CartDrawer() {
                   <div className="flex-1 min-w-0">
                     <div className="flex justify-between gap-2">
                       <p className="font-display text-lg leading-tight">{l.name}</p>
-                      <button onClick={() => remove(l.slug)} aria-label={`Remove ${l.name}`} className="-mt-2 -mr-3 h-11 w-11 flex items-center justify-center text-muted-foreground hover:text-gold"><X className="size-4" /></button>
+                      <Button variant="ghost" size="icon" onClick={() => remove(l.slug)} aria-label={`Remove ${l.name}`} className="-mt-2 -mr-3 h-11 w-11 flex items-center justify-center text-muted-foreground hover:text-gold"><X className="size-4" /></Button>
                     </div>
                     <ProductPrice className="mb-2 justify-start" size="compact" price={l.price} originalPrice={l.originalPrice} />
-                    <QtyStepper value={l.qty} onChange={(n) => setQty(l.slug, n)} label={l.name} />
+                    <QtyStepper value={l.qty} onChange={(n) => setQty(l.slug, n)} label={l.name} className="w-32" />
                   </div>
                 </li>
               ))}

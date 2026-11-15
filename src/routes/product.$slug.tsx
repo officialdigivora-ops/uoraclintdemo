@@ -13,6 +13,7 @@ import { useCart } from "@/lib/cart";
 import { whatsappLink } from "@/config/site";
 import { cn } from "@/lib/utils";
 import { ProductPrice } from "@/components/site/ProductPrice";
+import { QuantityControl } from "@/components/site/QuantityControl";
 
 export const Route = createFileRoute("/product/$slug")({
   loader: ({ params }) => {
@@ -46,10 +47,11 @@ function ProductPage() {
   const cat = getCategory(p.category);
   if (!cat) throw notFound();
   const [img, setImg] = useState(0);
-  const [qty, setQty] = useState(1);
+  const [qty, setQtyLocal] = useState(1);
   const [zoom, setZoom] = useState<{ x: number; y: number } | null>(null);
   const startX = useRef(0);
-  const { add } = useCart();
+  const { add, lines, setQty } = useCart();
+  const cartQuantity = lines.find((line) => line.slug === p.slug)?.qty ?? 0;
   const related = PRODUCTS.filter((x) => x.slug !== p.slug && x.category === p.category).concat(PRODUCTS.filter((x) => x.category !== p.category)).slice(0, 4);
   const price = getProductPrice(p);
   const buy = whatsappLink(`Hi UORA! I'd like to buy:\n\n${p.name} × ${qty} — ${formatINR(price * qty)}\n\nPlease confirm availability.`);
@@ -89,8 +91,10 @@ function ProductPage() {
             {MATERIALS.map((m) => <span key={m} className="rounded-full border border-line px-3 py-1.5 text-[11px] uppercase tracking-[0.14em]">{m}</span>)}
           </div>
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            <QtyStepper value={qty} onChange={(n) => setQty(Math.max(1, n))} label="quantity" />
-            <Button className="flex-1" onClick={() => add(p, qty)}>Add to Cart</Button>
+            {cartQuantity > 0 ? <QuantityControl className="flex-1" value={cartQuantity} label={p.name} onChange={(value) => setQty(p.slug, value)} /> : <>
+              <QtyStepper value={qty} onChange={(n) => setQtyLocal(Math.max(1, n))} label="quantity" />
+              <Button className="flex-1 h-11" onClick={() => add(p, qty)}>Add to Cart</Button>
+            </>}
           </div>
           {buy ? (
             <Button asChild variant="outline" className="w-full mt-3"><a href={buy} target="_blank" rel="noreferrer"><WhatsAppIcon /> Buy on WhatsApp</a></Button>

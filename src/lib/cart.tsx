@@ -6,6 +6,7 @@ import type { SelectionLine } from "./selection";
 interface Ctx {
   lines: SelectionLine[];
   count: number;
+  revision: number;
   open: boolean;
   setOpen: (o: boolean) => void;
   add: (p: Product, qty?: number) => void;
@@ -19,6 +20,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   const [lines, setLines] = useState<SelectionLine[]>([]);
   const [open, setOpen] = useState(false);
   const [loaded, setLoaded] = useState(false);
+  const [revision, setRevision] = useState(0);
 
   useEffect(() => {
     try {
@@ -42,6 +44,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
   useEffect(() => { if (loaded) localStorage.setItem(KEY, JSON.stringify(lines)); }, [lines, loaded]);
 
   const add = (p: Product, qty = 1) => {
+    setRevision((value) => value + 1);
     const price = getProductPrice(p);
     const originalPrice = getProductOriginalPrice(p);
     setLines((ls) => {
@@ -51,12 +54,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
     });
     toast.success(`${p.name} added to your cart`, { action: { label: "View cart", onClick: () => setOpen(true) } });
   };
-  const setQty = (slug: string, qty: number) =>
+  const setQty = (slug: string, qty: number) => {
+    setRevision((value) => value + 1);
     setLines((ls) => (qty <= 0 ? ls.filter((l) => l.slug !== slug) : ls.map((l) => (l.slug === slug ? { ...l, qty } : l))));
+  };
   const remove = (slug: string) => setLines((ls) => ls.filter((l) => l.slug !== slug));
   const count = lines.reduce((s, l) => s + l.qty, 0);
 
-  return <CartCtx.Provider value={{ lines, count, open, setOpen, add, setQty, remove }}>{children}</CartCtx.Provider>;
+  return <CartCtx.Provider value={{ lines, count, revision, open, setOpen, add, setQty, remove }}>{children}</CartCtx.Provider>;
 }
 
 export function useCart() {

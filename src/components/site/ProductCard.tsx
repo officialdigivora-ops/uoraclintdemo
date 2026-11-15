@@ -4,9 +4,11 @@ import { getProductOriginalPrice, getProductPrice } from "@/data/products";
 import { useCart } from "@/lib/cart";
 import { Button } from "@/components/ui/button";
 import { ProductPrice } from "./ProductPrice";
+import { QuantityControl } from "./QuantityControl";
 
 export function ProductCard({ product }: { product: Product }) {
-  const { add } = useCart();
+  const { add, lines, setQty } = useCart();
+  const quantity = lines.find((line) => line.slug === product.slug)?.qty ?? 0;
   return (
     <article className="group min-w-0 flex flex-col">
       <div className="relative aspect-square overflow-hidden bg-soft border border-line group-hover:glow-gold transition-shadow">
@@ -21,7 +23,9 @@ export function ProductCard({ product }: { product: Product }) {
         <Link to="/product/$slug" params={{ slug: product.slug }} title={product.name} className="block font-sans font-medium text-sm md:text-base leading-6 truncate hover:text-gold">{product.name}</Link>
         <ProductPrice className="mt-1" price={getProductPrice(product)} originalPrice={getProductOriginalPrice(product)} />
       </div>
-      <Button onClick={() => add(product)} aria-label={`Add ${product.name} to cart`} className="w-full min-h-11 px-1 text-xs sm:text-sm tracking-normal">Add to Cart</Button>
+      <div className="h-11">
+        {quantity > 0 ? <QuantityControl value={quantity} label={product.name} onChange={(value) => setQty(product.slug, value)} className="w-full" /> : <Button onClick={() => add(product)} aria-label={`Add ${product.name} to cart`} className="quantity-control w-full min-h-11 px-1 text-xs sm:text-sm tracking-normal">Add to Cart</Button>}
+      </div>
     </article>
   );
 }
