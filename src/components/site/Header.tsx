@@ -33,7 +33,7 @@ export function Header() {
           scrolled ? "h-[64px] lg:h-[72px]" : "h-[76px] lg:h-[84px]")}>
           <div className="flex items-center">
             <Button variant="ghost" size="icon" className="lg:hidden -ml-2 flex h-11 w-11 items-center justify-center text-foreground" aria-label="Open menu" onClick={() => setMenu(true)}>
-              <Menu className="size-7" strokeWidth={1.6} />
+              <Menu className="size-7!" strokeWidth={1.6} />
             </Button>
             <nav className="hidden lg:flex gap-7" aria-label="Main">
               {NAV.map((n) => (
@@ -46,10 +46,10 @@ export function Header() {
           <Logo />
           <div className="flex items-center justify-end gap-1">
             <Button variant="ghost" size="icon" className="flex h-11 w-11 items-center justify-center hover:text-gold" aria-label="Search" onClick={() => setSearch(true)}>
-              <Search className="size-7" strokeWidth={1.6} />
+              <Search className="size-7!" strokeWidth={1.6} />
             </Button>
             <Button variant="ghost" size="icon" className="relative flex h-11 w-11 items-center justify-center hover:text-gold -mr-2" aria-label={`Shopping cart, ${count} items`} onClick={() => setOpen(true)}>
-              <ShoppingCart className="size-7" strokeWidth={1.6} />
+              <ShoppingCart className="size-7!" strokeWidth={1.6} />
               {count > 0 && (
                 <span className="absolute right-1 top-1 flex h-[18px] min-w-[18px] items-center justify-center rounded-full bg-gold-gradient px-1 text-[10px] font-medium text-primary-foreground">{count}</span>
               )}
