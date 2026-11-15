@@ -1,4 +1,4 @@
-import { MARQUEE_WORDS } from "@/data/home";
+import { MARQUEE_TAGLINE, MARQUEE_WORDS } from "@/data/home";
 
 export function CrossMarquee() {
   return (
@@ -8,7 +8,11 @@ export function CrossMarquee() {
           <div className="cross-marquee-track">
             {[0, 1].map((copy) => (
               <div key={copy} className="flex shrink-0">
-                {[...MARQUEE_WORDS, ...MARQUEE_WORDS].map((word, index) => <span key={index} className="cross-marquee-word">{word} <span className="ml-5">✦</span></span>)}
+                {[...MARQUEE_WORDS, ...MARQUEE_WORDS].map((word, index) => (
+                  <span key={index} className={`cross-marquee-word${word === MARQUEE_TAGLINE ? " cross-marquee-tagline" : ""}`}>
+                    {word}<span className="cross-marquee-sparkle">✦</span>
+                  </span>
+                ))}
               </div>
             ))}
           </div>
