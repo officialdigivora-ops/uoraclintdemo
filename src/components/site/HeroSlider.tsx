@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
-import bangles from "@/assets/portrait-bangles.jpg";
-import necklaces from "@/assets/portrait-necklaces.jpg";
-import earrings from "@/assets/portrait-earrings.jpg";
-import bracelets from "@/assets/portrait-bracelets.jpg";
-import rings from "@/assets/portrait-rings.jpg";
+import bangles from "@/assets/luxury-bangles.jpg";
+import necklaces from "@/assets/luxury-necklaces.jpg";
+import earrings from "@/assets/luxury-earrings.jpg";
+import bracelets from "@/assets/luxury-bracelets.jpg";
+import rings from "@/assets/luxury-rings.jpg";
 
 const slides = [
   { image: earrings, alt: "Model wearing sculptural gold earrings with EARRINGS lettering behind her" },

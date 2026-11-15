@@ -128,6 +128,14 @@
 @utility animate-kenburns { animation: kenburns 8s ease-out forwards; }
 
 .header-logo { width: 116px; height: 100%; overflow: visible; }
+.quantity-control { animation: quantity-reveal 220ms ease-out; }
+.quantity-value { animation: quantity-number 220ms ease-out; }
+.cart-count-animate { animation: cart-item-drop 650ms cubic-bezier(.2,.75,.3,1) both; }
+.cart-basket-animate { transform-origin: center bottom; animation: cart-basket-bounce 650ms ease-in-out; }
+@keyframes quantity-reveal { from { opacity: .3; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes quantity-number { from { opacity: .4; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+@keyframes cart-item-drop { 0% { opacity: 0; transform: translateY(-18px) scale(.4); } 45% { opacity: 1; transform: translateY(2px) scale(1.1); } 65% { transform: translateY(-3px) scale(.95); } 100% { transform: translateY(0) scale(1); } }
+@keyframes cart-basket-bounce { 0%, 35%, 100% { transform: translateY(0) rotate(0); } 50% { transform: translateY(2px) rotate(-5deg); } 70% { transform: translateY(-1px) rotate(4deg); } 85% { transform: rotate(-2deg); } }
 .header-brand-static { display: block; width: 116px; height: 50px; background: var(--primary); mask-size: contain; mask-position: center; mask-repeat: no-repeat; }
 .header-brand-stage { position: relative; display: flex; width: 144px; height: 44px; align-items: center; justify-content: center; overflow: hidden; }
 .header-brand-artwork { position: absolute; width: 116px; aspect-ratio: 4 / 1; overflow: hidden; }
