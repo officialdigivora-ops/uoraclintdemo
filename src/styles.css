@@ -128,6 +128,7 @@
 @utility animate-kenburns { animation: kenburns 8s ease-out forwards; }
 
 .header-logo { width: 144px; height: 100%; overflow: visible; }
+.header-brand-static { display: block; width: 144px; height: 62px; background: var(--primary); mask-size: contain; mask-position: center; mask-repeat: no-repeat; }
 .header-brand-stage { position: relative; display: flex; width: 144px; height: 44px; align-items: center; justify-content: center; overflow: hidden; }
 .header-brand-artwork { position: absolute; width: 116px; aspect-ratio: 4 / 1; overflow: hidden; }
 .header-brand-artwork-tagline { width: 144px; }
@@ -141,13 +142,12 @@
 @media (prefers-reduced-motion: reduce) {
   .header-brand-artwork { animation: none; transform: none; }
 }
-.jewellery-hero { min-height: 580px; }
-.jewellery-hero > img { object-position: 65% center; }
-.jewellery-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, var(--bg-elevated), transparent 65%); }
+.jewellery-hero { min-height: 620px; }
+.jewellery-hero > img { object-position: center 30%; }
+.jewellery-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, var(--bg-elevated), color-mix(in oklab, var(--bg-elevated) 92%, transparent) 22%, transparent 55%); }
 @media (max-width: 767px) {
-  .jewellery-hero { min-height: 540px; }
-  .jewellery-hero > img { object-position: 72% top; }
-  .jewellery-hero::after { background: linear-gradient(0deg, var(--bg-elevated) 12%, color-mix(in oklab, var(--bg-elevated) 93%, transparent) 32%, transparent 70%); }
+  .jewellery-hero { min-height: 470px; }
+  .jewellery-hero > img { object-position: 65% center; }
 }
 @media (prefers-reduced-motion: reduce) { .header-logo, .header-logo::after { animation: none; } }
 

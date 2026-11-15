@@ -28,10 +28,10 @@ export function Header() {
 
   return (
     <>
-      <header className={cn("sticky top-0 z-40 overflow-hidden border-b border-line transition-all duration-300",
+      <header className={cn("sticky top-0 z-40 overflow-hidden rounded-t-[20px] border-b border-line transition-all duration-300",
         scrolled ? "bg-background" : "bg-background/80 backdrop-blur-md")}>
         <div className={cn("container-lux grid grid-cols-[1fr_auto_1fr] items-center transition-all duration-300",
-          scrolled ? "h-[56px] lg:h-[64px]" : "h-[60px] lg:h-[72px]")}>
+          scrolled ? "h-[64px] lg:h-[72px]" : "h-[76px] lg:h-[84px]")}>
           <div className="flex items-center">
             <Button variant="ghost" size="icon" className="lg:hidden -ml-2 flex h-11 w-11 items-center justify-center text-foreground" aria-label="Open menu" onClick={() => setMenu(true)}>
               <Menu className="size-6" strokeWidth={1.25} />

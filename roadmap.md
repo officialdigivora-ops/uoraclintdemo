@@ -1,4 +1,5 @@
 # Responsive merchandising refresh
+- [x] Replace the rotating header logo with the exact static logo and slogan in theme green; align the top section with the supplied reference without arrows.
 - [x] Tighten shared spacing and adapt product cards to the reference using existing prices and UORA styling.
 - [x] Normalize jar image bounds, enlarge mobile categories and scale the centred category during scrolling.
 - [x] Check all requested screen widths, category scrolling and adding products to selection.

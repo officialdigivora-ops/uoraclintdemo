@@ -43,18 +43,18 @@ function Index() {
     <>
       {/* 1. Hero */}
       <section className="relative overflow-hidden">
-        <div className="jewellery-hero relative flex items-end md:items-center overflow-hidden bg-elevated">
+        <div className="jewellery-hero relative flex items-start overflow-hidden bg-elevated">
           <img src={hero} alt="Gold jewellery styled with a crisp white shirt" width={1920} height={1024} className="absolute inset-0 h-full w-full object-cover" fetchPriority="high" />
-          <div className="container-lux relative z-10 pb-20 pt-12 md:pt-16 md:pb-24">
-            <Reveal className="max-w-md">
+          <div className="container-lux relative z-10 pb-12 pt-5 md:pt-8 text-center">
+            <div className="mx-auto max-w-lg">
               <h1 className="h1-lux">UORA</h1>
               <p className="font-display text-3xl mt-2">Own the <em className="text-gold">Rare</em></p>
-              <p className="mt-4 text-muted-foreground max-w-sm">18K gold plated, anti-tarnish jewellery crafted for everyday brilliance — and the compliments that follow.</p>
-              <div className="mt-6 flex flex-wrap gap-3">
+              <p className="mt-2 mx-auto text-sm text-muted-foreground max-w-sm">18K gold plated, anti-tarnish jewellery crafted for everyday brilliance.</p>
+              <div className="mt-4 flex justify-center flex-wrap gap-3">
                 <Button asChild size="lg"><Link to="/" hash="shop">Shop Now</Link></Button>
                 <Button asChild size="lg" variant="outline"><Link to="/" hash="shopByReel">Watch Reels</Link></Button>
               </div>
-            </Reveal>
+            </div>
           </div>
         </div>
       </section>
