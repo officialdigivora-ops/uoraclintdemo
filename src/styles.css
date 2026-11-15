@@ -146,11 +146,13 @@
 .jewellery-hero > img { object-position: center 30%; }
 .jewellery-hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, var(--bg-elevated), color-mix(in oklab, var(--bg-elevated) 92%, transparent) 22%, transparent 55%); }
 .jewellery-category-slider::after { display: none; }
-.jewellery-category-slider > img { object-position: center; }
-@media (min-width: 768px) { .jewellery-category-slider > img { object-position: 80% center; } }
+.jewellery-category-slider.jewellery-hero { min-height: 0; height: 620px; }
+.jewellery-category-slider > img { object-position: center top; }
 @media (max-width: 767px) {
   .jewellery-hero { min-height: 470px; }
   .jewellery-hero > img { object-position: 65% center; }
+  .jewellery-category-slider.jewellery-hero { height: auto; aspect-ratio: 1; }
+  .jewellery-category-slider > img { object-position: center; }
 }
 @media (prefers-reduced-motion: reduce) { .header-logo, .header-logo::after { animation: none; } }
 
