@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/cart";
 import { checkoutUrl, remainingForFreeShipping, subtotal } from "@/lib/selection";
 import { FREE_SHIPPING_THRESHOLD } from "@/config/site";
-import { formatINR, getProduct } from "@/data/products";
+import { formatINR, getProduct, getCartLineKey } from "@/data/products";
 import { WhatsAppIcon } from "./icons";
 import { ProductPrice } from "./ProductPrice";
 import { QuantityControl } from "./QuantityControl";
@@ -43,19 +43,20 @@ export function CartDrawer() {
           ) : (
             <ul className="space-y-3 py-4">
               {lines.map((l) => (
-                <li key={l.slug} className="relative grid grid-cols-[96px_minmax(0,1fr)] gap-3 rounded-lg border border-line bg-background p-3 sm:grid-cols-[112px_minmax(0,1fr)] sm:gap-4">
+                <li key={getCartLineKey(l.slug, l.variantId)} className="relative grid grid-cols-[96px_minmax(0,1fr)] gap-3 rounded-lg border border-line bg-background p-3 sm:grid-cols-[112px_minmax(0,1fr)] sm:gap-4">
                   <Link to="/product/$slug" params={{ slug: l.slug }} onClick={() => setOpen(false)} className="self-center overflow-hidden rounded-md bg-soft">
                     <img src={l.image} alt={l.name} width={224} height={280} className="aspect-[4/5] w-full object-cover transition-transform duration-500 hover:scale-105" />
                   </Link>
                   <div className="flex min-w-0 flex-col justify-center">
                     <div className="pr-6">
                       <Link to="/product/$slug" params={{ slug: l.slug }} onClick={() => setOpen(false)} className="block font-sans text-sm font-semibold leading-5 hover:text-primary">{l.name}</Link>
-                      <Button variant="ghost" size="icon" onClick={() => remove(l.slug)} aria-label={`Remove ${l.name}`} className="absolute right-0 top-0 h-9 w-9 text-muted-foreground hover:text-gold"><X className="size-3.5!" /></Button>
+                      <Button variant="ghost" size="icon" onClick={() => remove(getCartLineKey(l.slug, l.variantId))} aria-label={`Remove ${l.name}`} className="absolute right-0 top-0 h-9 w-9 text-muted-foreground hover:text-gold"><X className="size-3.5!" /></Button>
                     </div>
+                    {l.variantLabel && <p className="mt-1 text-xs text-primary">{l.variantLabel}</p>}
                     <p className="mt-1 line-clamp-2 text-[10px] leading-4 text-muted-foreground sm:text-xs">{getProduct(l.slug)?.description}</p>
                     <div className="mt-2 flex flex-wrap items-center justify-between gap-2">
                       <ProductPrice className="justify-start" size="compact" price={l.price} originalPrice={l.originalPrice} />
-                      <QtyStepper value={l.qty} onChange={(n) => setQty(l.slug, n)} label={l.name} className="cart-item-quantity ml-auto" />
+                      <QtyStepper value={l.qty} onChange={(n) => setQty(getCartLineKey(l.slug, l.variantId), n)} label={l.name} className="cart-item-quantity ml-auto" />
                     </div>
                   </div>
                 </li>

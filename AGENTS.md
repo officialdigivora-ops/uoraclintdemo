@@ -30,6 +30,7 @@ use the editor.
 <!-- LOVABLE:END -->
 
 ## Imported storefront structure
+- Keep imported ring designs in a dedicated catalogue module with colour variants and two compressed gallery images; cart line keys include colour IDs to prevent merging different selections.
 - Keep the UORA storefront's route pages, shared shopping UI, catalog content, and customer-facing configuration separated in their existing `src/routes`, `src/components/site`, `src/data`, and `src/config` areas so merchandising updates stay localized.
 - Keep bestseller sale-price calculations in shared product data helpers and render prices through a shared storefront price component so product views, cart, and order totals stay consistent.
 - Render the static header logo and slogan from the supplied artwork alpha mask tinted by the primary token, preserving exact shapes while following theme changes.

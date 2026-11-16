@@ -1,6 +1,6 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { toast } from "sonner";
-import { getProduct, getProductOriginalPrice, getProductPrice, type Product } from "@/data/products";
+import { getProduct, getProductOriginalPrice, getProductPrice, getCartLineKey, type Product } from "@/data/products";
 import type { SelectionLine } from "./selection";
 
 interface Ctx {
@@ -9,7 +9,7 @@ interface Ctx {
   revision: number;
   open: boolean;
   setOpen: (o: boolean) => void;
-  add: (p: Product, qty?: number) => void;
+  add: (p: Product, qty?: number, variantId?: string) => void;
   setQty: (slug: string, qty: number) => void;
   remove: (slug: string) => void;
 }
@@ -27,14 +27,16 @@ export function CartProvider({ children }: { children: ReactNode }) {
       const raw = localStorage.getItem(KEY);
       if (raw) {
         const saved = JSON.parse(raw) as SelectionLine[];
-        setLines(saved.map((line) => {
+        setLines(saved.filter((line) => getProduct(line.slug)).map((line) => {
           const product = getProduct(line.slug);
+          const variant = product?.variants?.find((v) => v.id === line.variantId) ?? product?.variants?.[0];
           return product ? {
             ...line,
             name: product.name,
             price: getProductPrice(product),
             originalPrice: getProductOriginalPrice(product),
-            image: product.images[0] ?? line.image,
+            image: variant?.images[0] ?? product.images[0] ?? line.image,
+            variantId: variant?.id, variantLabel: variant?.label,
           } : line;
         }));
       }
@@ -43,22 +45,24 @@ export function CartProvider({ children }: { children: ReactNode }) {
   }, []);
   useEffect(() => { if (loaded) localStorage.setItem(KEY, JSON.stringify(lines)); }, [lines, loaded]);
 
-  const add = (p: Product, qty = 1) => {
+  const add = (p: Product, qty = 1, variantId?: string) => {
     setRevision((value) => value + 1);
     const price = getProductPrice(p);
     const originalPrice = getProductOriginalPrice(p);
+    const variant = p.variants?.find((v) => v.id === variantId) ?? p.variants?.[0];
+    const key = getCartLineKey(p.slug, variant?.id);
     setLines((ls) => {
-      const ex = ls.find((l) => l.slug === p.slug);
-      if (ex) return ls.map((l) => (l.slug === p.slug ? { ...l, name: p.name, price, originalPrice, qty: l.qty + qty } : l));
-      return [...ls, { slug: p.slug, name: p.name, price, originalPrice, qty, image: p.images[0] ?? "" }];
+      const ex = ls.find((l) => getCartLineKey(l.slug, l.variantId) === key);
+      if (ex) return ls.map((l) => (getCartLineKey(l.slug, l.variantId) === key ? { ...l, name: p.name, price, originalPrice, qty: l.qty + qty } : l));
+      return [...ls, { slug: p.slug, name: p.name, price, originalPrice, qty, image: variant?.images[0] ?? p.images[0] ?? "", variantId: variant?.id, variantLabel: variant?.label }];
     });
     toast.success(`${p.name} added to your cart`, { action: { label: "View cart", onClick: () => setOpen(true) } });
   };
   const setQty = (slug: string, qty: number) => {
     setRevision((value) => value + 1);
-    setLines((ls) => (qty <= 0 ? ls.filter((l) => l.slug !== slug) : ls.map((l) => (l.slug === slug ? { ...l, qty } : l))));
+    setLines((ls) => (qty <= 0 ? ls.filter((l) => getCartLineKey(l.slug, l.variantId) !== slug) : ls.map((l) => (getCartLineKey(l.slug, l.variantId) === slug ? { ...l, qty } : l))));
   };
-  const remove = (slug: string) => setLines((ls) => ls.filter((l) => l.slug !== slug));
+  const remove = (slug: string) => setLines((ls) => ls.filter((l) => getCartLineKey(l.slug, l.variantId) !== slug));
   const count = lines.reduce((s, l) => s + l.qty, 0);
 
   return <CartCtx.Provider value={{ lines, count, revision, open, setOpen, add, setQty, remove }}>{children}</CartCtx.Provider>;

@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
-import { getProduct, getProductOriginalPrice, getProductPrice, PRODUCTS, formatINR } from "@/data/products";
+import { getProduct, getProductOriginalPrice, getProductPrice, PRODUCTS, formatINR, getCartLineKey } from "@/data/products";
 import { getCategory } from "@/data/categories";
 import { MATERIALS } from "@/data/content";
 import { Breadcrumbs } from "@/components/site/Breadcrumbs";
@@ -47,14 +47,18 @@ function ProductPage() {
   const cat = getCategory(p.category);
   if (!cat) throw notFound();
   const [img, setImg] = useState(0);
+  const [variantId, setVariantId] = useState(p.variants?.[0]?.id);
+  const variant = p.variants?.find((v) => v.id === variantId) ?? p.variants?.[0];
+  const images = variant?.images ?? p.images;
+  const lineKey = getCartLineKey(p.slug, variant?.id);
   const [qty, setQtyLocal] = useState(1);
   const [zoom, setZoom] = useState<{ x: number; y: number } | null>(null);
   const startX = useRef(0);
   const { add, lines, setQty } = useCart();
-  const cartQuantity = lines.find((line) => line.slug === p.slug)?.qty ?? 0;
+  const cartQuantity = lines.find((line) => getCartLineKey(line.slug, line.variantId) === lineKey)?.qty ?? 0;
   const related = PRODUCTS.filter((x) => x.slug !== p.slug && x.category === p.category).concat(PRODUCTS.filter((x) => x.category !== p.category)).slice(0, 4);
   const price = getProductPrice(p);
-  const buy = whatsappLink(`Hi UORA! I'd like to buy:\n\n${p.name} × ${qty} — ${formatINR(price * qty)}\n\nPlease confirm availability.`);
+  const buy = whatsappLink(`Hi UORA! I'd like to buy:\n\n${p.name}${variant ? ` (${variant.label})` : ""} × ${qty} — ${formatINR(price * qty)}\n\nPlease confirm availability.`);
 
   return (
     <div className="container-lux section-y">
@@ -62,7 +66,7 @@ function ProductPage() {
       <div className="grid lg:grid-cols-2 gap-10 lg:gap-16">
         <div className="flex gap-4">
           <div className="hidden lg:flex flex-col gap-3 w-20 shrink-0">
-            {p.images.map((s, i) => (
+            {images.map((s, i) => (
               <button key={i} onClick={() => setImg(i)} aria-label={`Image ${i + 1}`} className={cn("aspect-[4/5] border overflow-hidden", i === img ? "border-gold" : "border-line opacity-60")}>
                 <img src={s} alt="" className="h-full w-full object-cover" />
               </button>
@@ -72,12 +76,12 @@ function ProductPage() {
             <div className="relative aspect-[4/5] overflow-hidden border border-line bg-soft cursor-zoom-in"
               onClick={(e) => { if (zoom) return setZoom(null); const r = e.currentTarget.getBoundingClientRect(); setZoom({ x: ((e.clientX - r.left) / r.width) * 100, y: ((e.clientY - r.top) / r.height) * 100 }); }}
               onTouchStart={(e) => { const touch = e.touches.item(0); if (touch) startX.current = touch.clientX; }}
-              onTouchEnd={(e) => { const touch = e.changedTouches.item(0); if (!touch) return; const d = touch.clientX - startX.current; if (Math.abs(d) > 50) { setZoom(null); setImg((i) => (i + (d < 0 ? 1 : -1) + p.images.length) % p.images.length); } }}>
-              <img src={p.images[img] ?? p.images[0]} alt={p.name} width={768} height={960} className="h-full w-full object-cover transition-transform duration-300"
+              onTouchEnd={(e) => { const touch = e.changedTouches.item(0); if (!touch) return; const d = touch.clientX - startX.current; if (Math.abs(d) > 50) { setZoom(null); setImg((i) => (i + (d < 0 ? 1 : -1) + images.length) % images.length); } }}>
+              <img src={images[img] ?? images[0]} alt={p.name} width={768} height={960} className="h-full w-full object-cover transition-transform duration-300"
                 style={zoom ? { transform: "scale(2)", transformOrigin: `${zoom.x}% ${zoom.y}%` } : undefined} />
             </div>
             <div className="flex lg:hidden justify-center gap-2 mt-4">
-              {p.images.map((_, i) => <button key={i} onClick={() => setImg(i)} aria-label={`Image ${i + 1}`} className="h-6 w-6 flex items-center justify-center"><span className={cn("h-1.5 rounded-full transition-all", i === img ? "w-5 bg-gold" : "w-1.5 bg-line")} /></button>)}
+              {images.map((_, i) => <button key={i} onClick={() => setImg(i)} aria-label={`Image ${i + 1}`} className="h-6 w-6 flex items-center justify-center"><span className={cn("h-1.5 rounded-full transition-all", i === img ? "w-5 bg-gold" : "w-1.5 bg-line")} /></button>)}
             </div>
           </div>
         </div>
@@ -88,12 +92,13 @@ function ProductPage() {
           <ProductPrice className="justify-start mt-3" size="large" price={price} originalPrice={getProductOriginalPrice(p)} showDiscount />
           <p className="text-muted-foreground mt-5">{p.description}</p>
           <div className="flex flex-wrap gap-2 mt-6">
-            {MATERIALS.map((m) => <span key={m} className="rounded-full border border-line px-3 py-1.5 text-[11px] uppercase tracking-[0.14em]">{m}</span>)}
+            {(p.features ?? MATERIALS).map((m) => <span key={m} className="rounded-full border border-line px-3 py-1.5 text-[11px] uppercase tracking-[0.14em]">{m}</span>)}
           </div>
+          {p.variants && <div className="mt-6"><p className="text-sm font-medium mb-3">Colour: {variant?.label}</p><div className="flex gap-3">{p.variants.map((v) => <Button key={v.id} variant="outline" aria-label={`Select ${v.label}`} aria-pressed={variant?.id === v.id} onClick={() => { setVariantId(v.id); setImg(0); setZoom(null); }} className={cn("h-16 w-14 p-0 overflow-hidden rounded-sm", variant?.id === v.id && "ring-2 ring-primary ring-offset-2")}><img src={v.images[0]} alt={v.label} className="h-full w-full object-cover" /></Button>)}</div></div>}
           <div className="mt-8 flex flex-col sm:flex-row gap-3">
-            {cartQuantity > 0 ? <QuantityControl className="flex-1" value={cartQuantity} label={p.name} onChange={(value) => setQty(p.slug, value)} /> : <>
+            {cartQuantity > 0 ? <QuantityControl className="flex-1" value={cartQuantity} label={p.name} onChange={(value) => setQty(lineKey, value)} /> : <>
               <QtyStepper value={qty} onChange={(n) => setQtyLocal(Math.max(1, n))} label="quantity" />
-              <Button className="flex-1 h-11" onClick={() => add(p, qty)}>Add to Cart</Button>
+              <Button className="flex-1 h-11" onClick={() => add(p, qty, variant?.id)}>Add to Cart</Button>
             </>}
           </div>
           {buy ? (
@@ -103,7 +108,7 @@ function ProductPage() {
           )}
           <Accordion type="single" collapsible className="mt-10 border-t border-line">
             {([
-              ["Details", `${p.description} 18K gold plated over a surgical-steel base. Lightweight and comfortable for all-day wear.`],
+              ["Details", p.features ? `${p.description} ${p.features.join(". ")}. Style it. Flaunt it. Own the Rare.` : `${p.description} 18K gold plated over a surgical-steel base. Lightweight and comfortable for all-day wear.`],
               ["Care", "Wipe with a soft dry cloth after wearing, avoid perfume and harsh chemicals, and store in the UORA pouch."],
               ["Shipping", "Dispatched in 1–3 business days. Free shipping across India on orders of ₹1299+."],
             ] as const).map(([t, b]) => (
