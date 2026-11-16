@@ -7,6 +7,7 @@ import heroPointer from "@/assets/uora-editorial.jpg.asset.json";
 import model2Pointer from "@/assets/uora-model-earrings.jpg.asset.json";
 import model3Pointer from "@/assets/uora-model-wrist.jpg.asset.json";
 import type { CategorySlug } from "./categories";
+import { RING_PRODUCTS } from "./rings";
 
 const necklaces = (necklacesPointer as unknown as { url: string }).url;
 const earrings = (earringsPointer as unknown as { url: string }).url;
@@ -25,6 +26,9 @@ export interface Product {
   images: string[];
   description: string;
   bestSeller?: boolean;
+  originalPrice?: number;
+  features?: string[];
+  variants?: { id: string; label: string; images: string[] }[];
 }
 
 const base = { necklaces, earrings, rings, kada, bracelets };
@@ -37,25 +41,25 @@ const p = (slug: string, name: string, category: CategorySlug, price: number, de
 
 // Replace images with your own product photos.
 export const PRODUCTS: Product[] = [
+  ...RING_PRODUCTS,
   p("north-star-pendant", "North Star Pendant", "necklaces", 699, "A cushion pendant engraved with a four-point star on a fine cable chain.", true),
   p("aurelia-drops", "Aurelia Drops", "earrings", 549, "Sculpted teardrop earrings with a mirror-polished finish.", true),
-  p("dome-signet-ring", "Dome Signet Ring", "rings", 449, "A hammered dome ring with a soft moonstone-tone inlay.", true),
   p("heritage-kada", "Heritage Kada", "kada", 899, "A brushed open cuff edged with fine milgrain detail.", true),
   p("mariner-chain-bracelet", "Mariner Chain Bracelet", "bracelets", 499, "Delicate cable chain dotted with mariner links.", true),
   p("celeste-hoops", "Celeste Hoops", "earrings", 599, "Chunky everyday hoops, light enough for all-day wear.", true),
   p("layered-muse-necklace", "Layered Muse Necklace", "necklaces", 849, "Three graduated strands that layer themselves.", true),
   p("paperclip-bracelet", "Paperclip Bracelet", "bracelets", 649, "Bold elongated links with a secure lobster clasp.", true),
-  p("twist-stacker-ring", "Twist Stacker Ring", "rings", 349, "A slim rope-twist band made for stacking."),
   p("sol-studs", "Sol Studs", "earrings", 399, "Tiny sunburst studs for a quiet glint."),
   p("rope-chain-necklace", "Rope Chain Necklace", "necklaces", 749, "A classic rope chain that sits just on the collarbone."),
   p("minimal-cuff", "Minimal Cuff", "kada", 699, "A clean, high-polish open cuff."),
   p("tennis-line-bracelet", "Tennis Line Bracelet", "bracelets", 799, "A row of crystal-set links on a flexible line."),
-  p("double-band-ring", "Double Band Ring", "rings", 499, "Two fused bands for a stacked look in one."),
   p("jhumka-luxe", "Jhumka Luxe", "earrings", 879, "A modern jhumka with beaded fringe and filigree cap."),
   p("twisted-kada", "Twisted Kada", "kada", 599, "A rope-twist kada with a subtle sheen."),
 ];
 
 export const getProduct = (slug: string) => PRODUCTS.find((x) => x.slug === slug);
 export const getProductPrice = (product: Product) => product.bestSeller ? Math.round(product.price * 0.8) : product.price;
-export const getProductOriginalPrice = (product: Product) => product.bestSeller ? product.price : undefined;
+export const getProductOriginalPrice = (product: Product) => product.originalPrice ?? (product.bestSeller ? product.price : undefined);
 export const formatINR = (n: number) => `₹${n.toLocaleString("en-IN")}`;
+
+export const getCartLineKey = (slug: string, variantId?: string) => variantId ? `${slug}::${variantId}` : slug;

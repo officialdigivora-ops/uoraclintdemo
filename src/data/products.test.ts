@@ -20,10 +20,29 @@ describe("Bestseller sale prices", () => {
   });
 
   it("keeps regular products at their original price", () => {
-    const product = getProduct("twist-stacker-ring");
+    const product = getProduct("sol-studs");
     expect(product).toBeDefined();
     if (!product) return;
-    expect(getProductPrice(product)).toBe(349);
+    expect(getProductPrice(product)).toBe(399);
     expect(getProductOriginalPrice(product)).toBeUndefined();
+  });
+});
+
+describe("imported rings", () => {
+  it("charges ₹299 for every ring", () => {
+    const rings = PRODUCTS.filter((p) => p.category === "rings");
+    expect(rings.length).toBe(30);
+    rings.forEach((p) => expect(getProductPrice(p)).toBe(299));
+  });
+  it("uses ₹699 as every ring's regular price", () => {
+    const rings = PRODUCTS.filter((p) => p.category === "rings");
+    expect(rings.length).toBeGreaterThan(0);
+    rings.forEach((p) => expect(getProductOriginalPrice(p)).toBe(699));
+  });
+  it("groups the three frame colours under one product", () => {
+    const ring = getProduct("emerald-frame-ring");
+    expect(ring?.variants?.map((v) => v.id)).toEqual(["green", "pink", "clear"]);
+    expect(getProduct("rose-frame-ring")).toBeUndefined();
+    expect(getProduct("crystal-frame-ring")).toBeUndefined();
   });
 });

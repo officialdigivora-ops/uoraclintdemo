@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import type { Product } from "@/data/products";
-import { getProductOriginalPrice, getProductPrice } from "@/data/products";
+import { getProductOriginalPrice, getProductPrice, getCartLineKey } from "@/data/products";
 import { useCart } from "@/lib/cart";
 import { Button } from "@/components/ui/button";
 import { ProductPrice } from "./ProductPrice";
@@ -8,7 +8,9 @@ import { QuantityControl } from "./QuantityControl";
 
 export function ProductCard({ product }: { product: Product }) {
   const { add, lines, setQty } = useCart();
-  const quantity = lines.find((line) => line.slug === product.slug)?.qty ?? 0;
+  const variantId = product.variants?.[0]?.id;
+  const lineKey = getCartLineKey(product.slug, variantId);
+  const quantity = lines.find((line) => getCartLineKey(line.slug, line.variantId) === lineKey)?.qty ?? 0;
   return (
     <article className="group min-w-0 flex flex-col">
       <div className="relative aspect-square overflow-hidden bg-soft border border-line group-hover:glow-gold transition-shadow">
@@ -21,10 +23,10 @@ export function ProductCard({ product }: { product: Product }) {
       </div>
       <div className="pt-2 pb-2 text-center min-w-0 flex-1">
         <Link to="/product/$slug" params={{ slug: product.slug }} title={product.name} className="block font-sans font-medium text-sm md:text-base leading-6 truncate hover:text-gold">{product.name}</Link>
-        <ProductPrice className="mt-1" price={getProductPrice(product)} originalPrice={getProductOriginalPrice(product)} />
+        <ProductPrice className="mt-1" price={getProductPrice(product)} originalPrice={getProductOriginalPrice(product)} showDiscount={product.category === "rings"} />
       </div>
       <div className="h-11">
-        {quantity > 0 ? <QuantityControl value={quantity} label={product.name} onChange={(value) => setQty(product.slug, value)} className="w-full" /> : <Button onClick={() => add(product)} aria-label={`Add ${product.name} to cart`} className="quantity-control w-full min-h-11 px-1 text-xs sm:text-sm tracking-normal">Add to Cart</Button>}
+        {quantity > 0 ? <QuantityControl value={quantity} label={product.name} onChange={(value) => setQty(lineKey, value)} className="w-full" /> : <Button onClick={() => add(product)} aria-label={`Add ${product.name} to cart`} className="quantity-control w-full min-h-11 px-1 text-xs sm:text-sm tracking-normal">Add to Cart</Button>}
       </div>
     </article>
   );
