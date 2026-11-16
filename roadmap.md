@@ -1,7 +1,7 @@
 # Ring catalogue import
-- [ ] Import all 26 supplied rings and 78 original-named gallery images.
-- [ ] Use ₹299 payable / ₹699 regular prices and 57% badges across shopping views without adding unsupported ring claims.
-- [ ] Verify every gallery, ring browsing, cart quantities and order totals; hide Lovable branding.
+- [ ] Import the newest ring ZIP, deduplicate matching designs and group colour variants.
+- [ ] Create matching product and worn-on-hand images, compress them and add individual names/descriptions with supplied features.
+- [ ] Apply ₹299 payable / ₹699 regular pricing and verify colour selection, both gallery images and cart totals.
 
 # Responsive merchandising refresh
 - [x] Add left inset to customer reviews and restyle cart products with larger photographs, refined fonts and reference-style quantity controls.
