@@ -1,7 +1,7 @@
 # Ring catalogue import
-- [ ] Import the newest ring ZIP, deduplicate matching designs and group colour variants.
-- [ ] Create matching product and worn-on-hand images, compress them and add individual names/descriptions with supplied features.
-- [ ] Apply ₹299 payable / ₹699 regular pricing and verify colour selection, both gallery images and cart totals.
+- [x] Import the newest ring ZIP, deduplicate matching designs and group colour variants (30 designs, three frame colours).
+- [x] Create matching product and worn-on-hand images, compress them and add individual names/descriptions with supplied features (64 photos).
+- [x] Apply ₹299 payable / ₹699 regular pricing and verify colour selection, both gallery images and cart totals.
 
 # Responsive merchandising refresh
 - [x] Add left inset to customer reviews and restyle cart products with larger photographs, refined fonts and reference-style quantity controls.
