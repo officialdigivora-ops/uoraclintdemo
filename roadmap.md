@@ -1,4 +1,5 @@
 # Emerald Edit replacement
+- [x] Refine the model’s expression, reduce portrait size, show full head and both hands, and realign jewellery dots.
 - [x] Remove the model photo background, preserve full portrait framing, verify ticking numbers and retain one section divider.
 - [x] Replace benefit tiles with an emerald-dressed Arab model and linked jewellery hotspots.
 - [x] Add green countdown styling and animated ₹4999 / ₹2999 price and Shop Now strip without changing cart prices.

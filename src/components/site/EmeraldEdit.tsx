@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
-import model from "@/assets/emerald-edit-model-cutout.png";
+import model from "@/assets/emerald-edit-model-refined.png";
 import { Button } from "@/components/ui/button";
 import { SectionHeading } from "./SectionHeading";
 import { EMERALD_EDIT, getEditCountdown } from "@/data/emerald-edit";
@@ -23,7 +23,7 @@ export function EmeraldEdit() {
         <SectionHeading eyebrow="UORA Curated" lead="The Emerald" em="Edit" />
         <div className="emerald-edit-layout">
           <div className="emerald-edit-photo relative">
-            <img src={model} alt="Arab model in emerald green wearing UORA gold earrings, a pendant necklace, a ring and a chain bracelet" width={768} height={960} loading="lazy" className="block h-full w-full object-contain" />
+            <img src={model} alt="Smiling Arab model in emerald green with fully visible hands, wearing UORA earrings, pendant, ring and bracelet" width={1024} height={1536} loading="lazy" className="block h-full w-full object-contain" />
             {EMERALD_EDIT.hotspots.map((hotspot) => (
               <Button key={hotspot.slug} asChild variant="ghost" size="icon" className={`emerald-hotspot emerald-hotspot-${hotspot.position}`}>
                 <Link to="/product/$slug" params={{ slug: hotspot.slug }} aria-label={`Shop ${hotspot.name}`} title={hotspot.name}>

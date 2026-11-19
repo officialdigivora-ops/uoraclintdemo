@@ -194,13 +194,13 @@
 @media (prefers-reduced-motion: reduce) { .cross-marquee-track { animation: none; } }
 
 .emerald-edit-layout { max-width: 920px; margin-inline: auto; }
-.emerald-edit-photo { aspect-ratio: 4 / 5; background: transparent; }
+.emerald-edit-photo { aspect-ratio: 2 / 3; width: 88%; max-width: 280px; margin-inline: auto; background: transparent; }
 .emerald-hotspot { position: absolute; transform: translate(-50%, -50%); width: 44px; height: 44px; border-radius: 50%; background: transparent; }
 .emerald-hotspot:hover { background: transparent; }
-.emerald-hotspot-earrings { left: 33%; top: 28%; }
-.emerald-hotspot-ring { left: 74%; top: 43%; }
-.emerald-hotspot-necklace { left: 50%; top: 61%; }
-.emerald-hotspot-bracelet { left: 80%; top: 68%; }
+.emerald-hotspot-earrings { left: 38%; top: 23%; }
+.emerald-hotspot-ring { left: 69%; top: 32%; }
+.emerald-hotspot-necklace { left: 50%; top: 43%; }
+.emerald-hotspot-bracelet { left: 77%; top: 48%; }
 .emerald-hotspot-dot { position: relative; width: 11px; height: 11px; border-radius: 50%; background: var(--hotspot); border: 2px solid var(--background); }
 .emerald-hotspot-dot::after { content: ""; position: absolute; inset: -8px; border: 1px solid var(--hotspot); border-radius: 50%; animation: emerald-pulse 1.8s ease-out infinite; }
 .emerald-hotspot-label { position: absolute; bottom: 43px; left: 50%; transform: translateX(-50%); width: max-content; max-width: 150px; padding: 5px 8px; background: var(--background); color: var(--primary); font-size: 10px; opacity: 0; pointer-events: none; transition: opacity 150ms; }
@@ -214,6 +214,7 @@
 @keyframes emerald-arrow { 0%, 100% { opacity: 1; transform: translateX(0); } 50% { opacity: .35; transform: translateX(4px); } }
 @media (min-width: 1024px) {
   .emerald-edit-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: center; }
+  .emerald-edit-photo { max-width: 420px; }
 }
 @media (prefers-reduced-motion: reduce) {
   .emerald-hotspot-dot::after, .emerald-shop-arrow { animation: none; }
