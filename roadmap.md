@@ -1,4 +1,5 @@
 # Emerald Edit replacement
+- [x] Remove the model photo background, preserve full portrait framing, verify ticking numbers and retain one section divider.
 - [x] Replace benefit tiles with an emerald-dressed Arab model and linked jewellery hotspots.
 - [x] Add green countdown styling and animated ₹4999 / ₹2999 price and Shop Now strip without changing cart prices.
 - [x] Use a dummy display-only offer and link Shop Now to the collection, as requested.

@@ -194,7 +194,7 @@
 @media (prefers-reduced-motion: reduce) { .cross-marquee-track { animation: none; } }
 
 .emerald-edit-layout { max-width: 920px; margin-inline: auto; }
-.emerald-edit-photo { aspect-ratio: 4 / 5; overflow: hidden; }
+.emerald-edit-photo { aspect-ratio: 4 / 5; background: transparent; }
 .emerald-hotspot { position: absolute; transform: translate(-50%, -50%); width: 44px; height: 44px; border-radius: 50%; background: transparent; }
 .emerald-hotspot:hover { background: transparent; }
 .emerald-hotspot-earrings { left: 33%; top: 28%; }
