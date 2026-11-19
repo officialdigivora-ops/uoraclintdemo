@@ -13,13 +13,8 @@ export function Wordmark({ className }: { className?: string }) {
 
 export function Logo({ size = "header" }: { size?: "header" | "footer" }) {
   return (
-    <Link to="/" aria-label="UORA — home" className={cn("flex items-center justify-center", size === "header" ? "header-logo" : "flex-col")}>
-      {size === "header" ? (
-        <span className="header-brand-static" aria-hidden="true" style={{ maskImage: `url(${headerArtwork.url})`, WebkitMaskImage: `url(${headerArtwork.url})` }} />
-      ) : <Wordmark className="text-5xl" />}
-      {size === "footer" && <span className="eyebrow mt-1 text-muted-foreground text-[11px]">
-        Own the Rare
-      </span>}
+    <Link to="/" aria-label="UORA — home" className={cn("flex items-center justify-center", size === "header" && "header-logo")}>
+      <span className={cn("header-brand-static", size === "footer" && "footer-brand-static")} aria-hidden="true" style={{ maskImage: `url(${headerArtwork.url})`, WebkitMaskImage: `url(${headerArtwork.url})` }} />
     </Link>
   );
 }

@@ -66,3 +66,10 @@
 - [x] Verify preview, product browsing, basket updates, sitemap, and public policy routes.
 - [ ] Resolve the placeholder WhatsApp number and non-connected form delivery before claiming production readiness.
 - [ ] Confirm source domain and live cutover timing.
+
+## Scroll motion and footer refresh
+- [x] Remove the collection's filter/sort bar and piece count.
+- [x] Move categories and client reviews sideways as the page scrolls; open FAQs one after another on scroll.
+- [x] Remove the Get in Touch section and point Contact links to the footer.
+- [x] Footer: header logo, brand-coloured Instagram/Facebook/Email/WhatsApp icons, no Shop column, refreshed Support and Stay in the Aura.
+- [ ] Add real social profile links (waiting on the owner's Instagram, Facebook, email and WhatsApp details).

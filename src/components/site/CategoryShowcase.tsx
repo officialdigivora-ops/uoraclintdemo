@@ -1,10 +1,12 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState } from "react";
 import { CATEGORIES } from "@/data/categories";
+import { useScrollLinkedTrack } from "@/hooks/use-scroll-linked-track";
 
 export function CategoryShowcase() {
   const track = useRef<HTMLDivElement>(null);
   const [active, setActive] = useState(1);
+  useScrollLinkedTrack(track);
   useEffect(() => {
     const element = track.current;
     if (!element) return;

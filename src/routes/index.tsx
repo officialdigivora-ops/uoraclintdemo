@@ -1,9 +1,8 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
+import { useRef } from "react";
 import { Star } from "lucide-react";
 import { EmeraldEdit } from "@/components/site/EmeraldEdit";
 import { HeroSlider } from "@/components/site/HeroSlider";
-import { Button } from "@/components/ui/button";
-import { Reveal } from "@/components/site/Reveal";
 import { SectionHeading } from "@/components/site/SectionHeading";
 import { ProductCard } from "@/components/site/ProductCard";
 import { ProductCollection } from "@/components/site/ProductCollection";
@@ -11,11 +10,9 @@ import { CategoryShowcase } from "@/components/site/CategoryShowcase";
 import { CrossMarquee } from "@/components/site/CrossMarquee";
 import { Reels } from "@/components/site/Reels";
 import { Faq } from "@/components/site/Faq";
-import { ContactForm } from "@/components/site/ContactForm";
-import { WhatsAppIcon, InstagramIcon } from "@/components/site/icons";
 import { POPULAR_BESTSELLERS } from "@/data/home";
 import { TESTIMONIALS } from "@/data/testimonials";
-import { INSTAGRAM_HANDLE, INSTAGRAM_URL, whatsappLink } from "@/config/site";
+import { useScrollLinkedTrack } from "@/hooks/use-scroll-linked-track";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -33,7 +30,8 @@ export const Route = createFileRoute("/")({
 });
 
 function Index() {
-  const contactLink = whatsappLink("Hi UORA! I need help choosing a piece.");
+  const reviewsTrack = useRef<HTMLDivElement>(null);
+  useScrollLinkedTrack(reviewsTrack);
   return (
     <>
       {/* 1. Hero */}
@@ -81,7 +79,7 @@ function Index() {
             <span className="font-display text-2xl">5 / 5</span>
             <span className="flex text-gold">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="size-4 fill-current" />)}</span>
           </div>
-          <div className="flex gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar pl-3 pr-1 scroll-pl-3 md:pl-0 md:pr-0 md:scroll-pl-0">
+          <div ref={reviewsTrack} className="flex gap-4 overflow-x-auto snap-x snap-mandatory no-scrollbar pl-3 pr-1 scroll-pl-3 md:pl-0 md:pr-0 md:scroll-pl-0">
             {TESTIMONIALS.map((t) => (
               <figure key={t.name} className="snap-start shrink-0 w-[82%] md:w-[calc((100%-2rem)/3)] border border-line bg-background p-6 lg:p-8 flex flex-col">
                 <span className="flex text-gold mb-4">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="size-3.5 fill-current" />)}</span>
@@ -102,21 +100,6 @@ function Index() {
         <Faq />
       </section>
 
-      {/* 10. Contact */}
-      <section id="contact" className="py-8 md:py-12 border-t border-line">
-        <div className="container-lux grid lg:grid-cols-2 gap-8 lg:gap-16">
-          <Reveal>
-            <p className="eyebrow mb-3">Get in Touch</p>
-            <h2 className="h2-lux">Need Help Choosing? We're Here for <em>You</em></h2>
-            <p className="text-muted-foreground mt-5 max-w-md">Not sure which hoop size suits you, or looking for a gift? Message us and we'll help you find a piece that feels unmistakably yours.</p>
-            <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              {contactLink && <Button asChild><a href={contactLink} target="_blank" rel="noreferrer"><WhatsAppIcon /> WhatsApp Us</a></Button>}
-              <Button asChild variant="outline"><a href={INSTAGRAM_URL} target="_blank" rel="noreferrer"><InstagramIcon /> @{INSTAGRAM_HANDLE}</a></Button>
-            </div>
-          </Reveal>
-          <Reveal delay={0.08}><ContactForm /></Reveal>
-        </div>
-      </section>
     </>
   );
 }

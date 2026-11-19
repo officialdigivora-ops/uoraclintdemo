@@ -37,3 +37,4 @@ use the editor.
 - Render the static header logo and slogan from the supplied artwork alpha mask tinted by the primary token, preserving exact shapes while following theme changes.
 - Keep the homepage photo carousel in a shared site component with automatic rotation, accessible dot controls, and reduced-motion support so presentation stays separate from catalog logic.
 - Use a shared quantity control backed by CartProvider across cards, product pages and the drawer; animate header feedback from a cart revision counter so updates stay synchronized without animating restored carts.
+- Drive scroll-linked horizontal tracks through the shared `useScrollLinkedTrack` hook so reduced-motion handling and snap disabling stay consistent; footer social links come from `SOCIAL_PROFILES` and render as non-link icons until a real URL is set.

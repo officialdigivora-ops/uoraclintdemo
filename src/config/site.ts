@@ -12,3 +12,12 @@ export const whatsappLink = (text?: string) => {
   if (!isWhatsAppConfigured()) return null;
   return `https://wa.me/${WHATSAPP_NUMBER}${text ? `?text=${encodeURIComponent(text)}` : ""}`;
 };
+
+// Footer social profiles — paste each real link here to make its icon clickable.
+// Left empty, the icon stays visible but is not a link.
+export const SOCIAL_PROFILES = {
+  instagram: "",
+  facebook: "",
+  email: "",
+  whatsapp: "",
+} as const;

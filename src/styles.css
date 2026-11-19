@@ -220,3 +220,20 @@
   .emerald-hotspot-dot::after, .emerald-shop-arrow { animation: none; }
   .emerald-original-price::after { animation: none; transform: scaleX(1); }
 }
+
+/* Scroll-linked horizontal tracks: snapping is disabled so page scroll can glide them smoothly. */
+.scroll-linked-track { scroll-snap-type: none !important; scroll-behavior: auto !important; }
+
+/* Footer brand + social badges in each platform's own colours. */
+.footer-brand-static { width: 190px; height: 82px; }
+.social-badge { display: flex; width: 46px; height: 46px; align-items: center; justify-content: center; border-radius: 9999px; color: #fff; box-shadow: 0 8px 18px -10px var(--metal-shadow); transition: transform 250ms ease; }
+.social-badge:hover { transform: translateY(-3px); }
+.social-badge-instagram { background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285aeb 90%); }
+.social-badge-facebook { background: #1877f2; }
+.social-badge-email { background: #ea4335; }
+.social-badge-whatsapp { background: #25d366; }
+.aura-card { background-image: radial-gradient(circle at 100% 0%, color-mix(in oklab, var(--metal-light) 28%, transparent), transparent 55%), radial-gradient(circle at 0% 100%, color-mix(in oklab, var(--gold-light) 70%, transparent), transparent 60%); }
+.aura-card-sparkle { color: var(--metal-light); animation: aura-twinkle 2.6s ease-in-out infinite; }
+@keyframes aura-twinkle { 0%, 100% { opacity: .55; transform: scale(.9) rotate(0); } 50% { opacity: 1; transform: scale(1.08) rotate(12deg); } }
+@media (prefers-reduced-motion: reduce) { .aura-card-sparkle { animation: none; } }
+.aura-card h3 em { background: none; color: var(--metal-light); }
