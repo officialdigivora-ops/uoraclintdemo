@@ -30,6 +30,7 @@ use the editor.
 <!-- LOVABLE:END -->
 
 ## Imported storefront structure
+- Keep shoppable editorial hotspots and offer display settings in a dedicated data module; countdowns require a confirmed fixed deadline and never reset automatically.
 - Keep imported ring designs in a dedicated catalogue module with colour variants and two compressed gallery images; cart line keys include colour IDs to prevent merging different selections.
 - Keep the UORA storefront's route pages, shared shopping UI, catalog content, and customer-facing configuration separated in their existing `src/routes`, `src/components/site`, `src/data`, and `src/config` areas so merchandising updates stay localized.
 - Keep bestseller sale-price calculations in shared product data helpers and render prices through a shared storefront price component so product views, cart, and order totals stay consistent.

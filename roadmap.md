@@ -1,3 +1,10 @@
+# Emerald Edit replacement
+- [x] Replace benefit tiles with an emerald-dressed Arab model and linked jewellery hotspots.
+- [x] Add green countdown styling and animated ₹4999 / ₹2999 price and Shop Now strip without changing cart prices.
+- [x] Use a dummy display-only offer and link Shop Now to the collection, as requested.
+- [x] Set and verify one shared 72-hour countdown for all visitors (ends 22 November 2026, 05:49 India time).
+- [x] Verify phone and desktop display and all four product links.
+
 # Ring catalogue import
 - [x] Import the newest ring ZIP, deduplicate matching designs and group colour variants (30 designs, three frame colours).
 - [x] Create matching product and worn-on-hand images, compress them and add individual names/descriptions with supplied features (64 photos).

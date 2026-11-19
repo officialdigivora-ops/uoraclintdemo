@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { BadgeCheck, Droplets, Leaf, Truck, Star } from "lucide-react";
+import { Star } from "lucide-react";
+import { EmeraldEdit } from "@/components/site/EmeraldEdit";
 import { HeroSlider } from "@/components/site/HeroSlider";
 import { Button } from "@/components/ui/button";
 import { Reveal } from "@/components/site/Reveal";
@@ -14,9 +15,7 @@ import { ContactForm } from "@/components/site/ContactForm";
 import { WhatsAppIcon, InstagramIcon } from "@/components/site/icons";
 import { POPULAR_BESTSELLERS } from "@/data/home";
 import { TESTIMONIALS } from "@/data/testimonials";
-import { TRUST_BADGES } from "@/data/content";
 import { INSTAGRAM_HANDLE, INSTAGRAM_URL, whatsappLink } from "@/config/site";
-import { cn } from "@/lib/utils";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -32,8 +31,6 @@ export const Route = createFileRoute("/")({
   }),
   component: Index,
 });
-
-const ICONS = { droplets: Droplets, leaf: Leaf, truck: Truck, sparkles: BadgeCheck };
 
 function Index() {
   const contactLink = whatsappLink("Hi UORA! I need help choosing a piece.");
@@ -60,21 +57,7 @@ function Index() {
         </div>
       </section>
 
-      {/* 4. Trust */}
-      <section className="border-y border-line bg-elevated">
-        <div className="container-lux grid grid-cols-2 lg:grid-cols-4">
-          {TRUST_BADGES.map((b, i) => {
-            const I = ICONS[b.icon];
-            return (
-              <div key={b.title} className={cn("flex min-h-32 flex-col items-center justify-center border-line px-3 py-3 text-center sm:min-h-36 sm:py-4", i % 2 === 0 && "border-r", i < 2 && "border-b lg:border-b-0", i === 1 && "lg:border-r", i === 2 && "lg:border-r")}>
-                <I className="mb-2 size-7 text-gold" strokeWidth={1.25} />
-                <p className="font-display text-lg leading-tight sm:text-xl">{b.title}</p>
-                <p className="mt-1 text-sm text-muted-foreground">{b.text}</p>
-              </div>
-            );
-          })}
-        </div>
-      </section>
+      <EmeraldEdit />
 
       {/* 6. Collection */}
       <section id="shop" className="py-8 md:py-12 container-lux border-t border-line">

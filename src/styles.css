@@ -38,6 +38,7 @@
   --color-soft: var(--bg-soft);
   --color-line: var(--line);
   --color-success: var(--success);
+  --color-hotspot: var(--hotspot);
 }
 
 :root {
@@ -53,6 +54,7 @@
   --muted-foreground: oklch(0.48 0.026 165);
   --line: oklch(0.39 0.075 165 / 0.19);
   --success: oklch(0.45 0.1 155);
+  --hotspot: oklch(0.61 0.23 25);
   --on-brand: oklch(0.985 0.006 160);
   --metal-light: oklch(0.87 0.09 85);
   --metal-mid: oklch(0.67 0.1 80);
@@ -190,3 +192,30 @@
   .category-showcase-item { flex: 0 0 100%; }
 }
 @media (prefers-reduced-motion: reduce) { .cross-marquee-track { animation: none; } }
+
+.emerald-edit-layout { max-width: 920px; margin-inline: auto; }
+.emerald-edit-photo { aspect-ratio: 4 / 5; overflow: hidden; }
+.emerald-hotspot { position: absolute; transform: translate(-50%, -50%); width: 44px; height: 44px; border-radius: 50%; background: transparent; }
+.emerald-hotspot:hover { background: transparent; }
+.emerald-hotspot-earrings { left: 33%; top: 28%; }
+.emerald-hotspot-ring { left: 74%; top: 43%; }
+.emerald-hotspot-necklace { left: 50%; top: 61%; }
+.emerald-hotspot-bracelet { left: 80%; top: 68%; }
+.emerald-hotspot-dot { position: relative; width: 11px; height: 11px; border-radius: 50%; background: var(--hotspot); border: 2px solid var(--background); }
+.emerald-hotspot-dot::after { content: ""; position: absolute; inset: -8px; border: 1px solid var(--hotspot); border-radius: 50%; animation: emerald-pulse 1.8s ease-out infinite; }
+.emerald-hotspot-label { position: absolute; bottom: 43px; left: 50%; transform: translateX(-50%); width: max-content; max-width: 150px; padding: 5px 8px; background: var(--background); color: var(--primary); font-size: 10px; opacity: 0; pointer-events: none; transition: opacity 150ms; }
+.emerald-hotspot:hover .emerald-hotspot-label, .emerald-hotspot:focus-visible .emerald-hotspot-label { opacity: 1; }
+.emerald-original-price { position: relative; }
+.emerald-original-price::after { content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px; background: currentColor; transform-origin: left; animation: emerald-strike 3s ease-in-out infinite; }
+.emerald-shop-link:hover { background: transparent; }
+.emerald-shop-arrow { animation: emerald-arrow 1.8s ease-in-out infinite; }
+@keyframes emerald-pulse { from { opacity: .9; transform: scale(.5); } to { opacity: 0; transform: scale(1.5); } }
+@keyframes emerald-strike { 0%, 12% { transform: scaleX(0); } 40%, 85% { transform: scaleX(1); } 100% { transform: scaleX(0); } }
+@keyframes emerald-arrow { 0%, 100% { opacity: 1; transform: translateX(0); } 50% { opacity: .35; transform: translateX(4px); } }
+@media (min-width: 1024px) {
+  .emerald-edit-layout { display: grid; grid-template-columns: 1.1fr 1fr; gap: 56px; align-items: center; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .emerald-hotspot-dot::after, .emerald-shop-arrow { animation: none; }
+  .emerald-original-price::after { animation: none; transform: scaleX(1); }
+}
