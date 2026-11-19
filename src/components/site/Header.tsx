@@ -64,27 +64,46 @@ export function Header() {
           </div>
           <div className="flex-1 overflow-y-auto px-6 py-6">
             <nav className="flex flex-col" aria-label="Mobile">
-              {NAV.map((n) => (
-                <Link key={n.hash} to="/" hash={n.hash} onClick={() => setMenu(false)} className="font-display text-3xl py-2.5 hover:text-gold">
-                  {n.label}
+              {NAV.map((n, i) => (
+                <Link key={n.hash} to="/" hash={n.hash} onClick={() => setMenu(false)} className="group flex items-baseline gap-3 border-b border-line/60 py-3">
+                  <span className="text-[10px] font-semibold tracking-[0.2em] text-gold">0{i + 1}</span>
+                  <span className="font-display text-3xl transition-colors group-hover:text-gold">{n.label}</span>
+                  <span className="ml-auto text-gold opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">→</span>
                 </Link>
               ))}
-              <Link to="/care-guide" onClick={() => setMenu(false)} className="font-display text-3xl py-2.5 hover:text-gold">Care Guide</Link>
+              <Link to="/care-guide" onClick={() => setMenu(false)} className="group flex items-baseline gap-3 border-b border-line/60 py-3">
+                <span className="text-[10px] font-semibold tracking-[0.2em] text-gold">0{NAV.length + 1}</span>
+                <span className="font-display text-3xl transition-colors group-hover:text-gold">Care Guide</span>
+                <span className="ml-auto text-gold opacity-0 transition-all duration-300 group-hover:translate-x-1 group-hover:opacity-100">→</span>
+              </Link>
             </nav>
             <p className="eyebrow mt-8 mb-3">Shop by Category</p>
-            <ul className="border-t border-line">
+            <ul className="space-y-2.5">
               {CATEGORIES.map((c) => (
-                <li key={c.slug} className="border-b border-line">
-                  <Link to="/product-category/$slug" params={{ slug: c.slug }} onClick={() => setMenu(false)} className="flex h-12 items-center justify-between text-sm uppercase tracking-[0.14em] hover:text-gold">
-                    {c.label} <span className="text-gold">→</span>
+                <li key={c.slug}>
+                  <Link to="/product-category/$slug" params={{ slug: c.slug }} onClick={() => setMenu(false)} className="group flex items-center gap-3 rounded-xl border border-line bg-background p-2.5 transition-colors hover:border-gold/60">
+                    <span className="flex h-14 w-14 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-soft">
+                      <img src={c.displayImage} alt="" width={112} height={112} loading="lazy" className="h-full w-full object-contain transition-transform duration-500 group-hover:scale-110" />
+                    </span>
+                    <span className="min-w-0 flex-1">
+                      <span className="block text-sm font-semibold uppercase tracking-[0.12em]">{c.label}</span>
+                      <span className="mt-0.5 block truncate text-xs text-muted-foreground">{c.intro}</span>
+                    </span>
+                    <span className="pr-1 text-gold transition-transform duration-300 group-hover:translate-x-1">→</span>
                   </Link>
                 </li>
               ))}
             </ul>
+            <div className="mt-6 rounded-xl bg-primary px-5 py-4 text-primary-foreground">
+              <p className="font-display text-xl italic">Where rarity meets eternity</p>
+              <p className="mt-1 text-xs opacity-80">2,000+ pieces find new homes every day.</p>
+            </div>
           </div>
-          <div className="flex gap-3 border-t border-line px-6 py-5">
-            {contactLink && <a href={contactLink} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="flex h-11 w-11 items-center justify-center rounded-full border border-gold text-gold"><WhatsAppIcon /></a>}
-            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram" className="flex h-11 w-11 items-center justify-center rounded-full border border-gold text-gold"><InstagramIcon className="size-5" strokeWidth={1.25} /></a>
+          <div className="flex items-center gap-3 border-t border-line px-6 py-5">
+            <p className="text-xs uppercase tracking-[0.18em] text-muted-foreground">Follow us</p>
+            <span className="h-px flex-1 bg-line" />
+            {contactLink && <a href={contactLink} target="_blank" rel="noreferrer" aria-label="WhatsApp" className="flex h-11 w-11 items-center justify-center rounded-full border border-gold text-gold transition-colors hover:bg-gold hover:text-background"><WhatsAppIcon /></a>}
+            <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" aria-label="Instagram" className="flex h-11 w-11 items-center justify-center rounded-full border border-gold text-gold transition-colors hover:bg-gold hover:text-background"><InstagramIcon className="size-5" strokeWidth={1.25} /></a>
           </div>
         </SheetContent>
       </Sheet>

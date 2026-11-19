@@ -69,7 +69,7 @@ export function CartDrawer() {
           <div className="border-t border-line px-6 py-5 space-y-4">
             <div className="flex justify-between items-baseline">
               <span className="eyebrow">Subtotal</span>
-              <span className="font-display text-2xl text-gold">{formatINR(total)}</span>
+              <span className="font-sans text-2xl font-semibold text-primary">{formatINR(total)}</span>
             </div>
             <p className="text-xs text-muted-foreground">Availability confirmed via WhatsApp. No payment is collected on this site.</p>
             {orderUrl ? (
