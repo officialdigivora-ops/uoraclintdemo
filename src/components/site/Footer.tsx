@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { toast } from "sonner";
 import { z } from "zod";
-import { ArrowUpRight, Mail, Sparkles } from "lucide-react";
+import { ArrowUpRight, Mail } from "lucide-react";
 import { Logo } from "./Logo";
 import { FacebookIcon, InstagramIcon, SocialWhatsAppIcon } from "./icons";
 import { BRAND } from "@/data/content";
@@ -52,7 +52,7 @@ export function Footer() {
         </ul>
       </div>
 
-      <div className="container-lux pb-12 lg:pb-16 grid gap-5 lg:grid-cols-[1fr_1.6fr]">
+      <div className="container-lux pb-12 lg:pb-16 grid gap-5">
         <nav aria-label="Support" className="rounded-[20px] border border-line bg-background px-6 py-6">
           <p className="eyebrow mb-2">Support</p>
           <ul>
@@ -68,20 +68,13 @@ export function Footer() {
           </ul>
         </nav>
 
-        <div className="aura-card relative overflow-hidden rounded-[20px] bg-primary text-primary-foreground px-6 py-8 sm:px-9">
-          <Sparkles aria-hidden className="aura-card-sparkle absolute right-6 top-6 size-7" />
-          <p className="text-[11px] uppercase tracking-[0.28em] opacity-80">Members' Circle</p>
-          <h3 className="font-display text-4xl font-medium mt-2 leading-tight">Stay in the <em className="italic">Aura</em></h3>
-          <p className="text-sm opacity-85 mt-2 max-w-sm">New drops, styling notes and members-only offers.</p>
-          <form onSubmit={subscribe} className="mt-6 flex items-center gap-2 rounded-full border border-primary-foreground/35 bg-primary-foreground/10 p-1.5 focus-within:border-primary-foreground">
+        <div className="aura-card rounded-[20px] bg-primary text-primary-foreground p-2 lg:col-span-full">
+          <form onSubmit={subscribe} className="flex items-center gap-2 rounded-full border border-primary-foreground/35 bg-primary-foreground/10 p-1 focus-within:border-primary-foreground">
             <label htmlFor="nl-email" className="sr-only">Email address</label>
             <input id="nl-email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} placeholder="Your email"
               className="h-11 flex-1 min-w-0 bg-transparent px-4 text-sm text-primary-foreground outline-none placeholder:text-primary-foreground/60" />
             <button type="submit" className="h-11 shrink-0 rounded-full bg-background px-5 text-xs font-semibold uppercase tracking-[0.16em] text-primary transition-transform hover:scale-[1.03]">Subscribe</button>
           </form>
-          <ul className="mt-5 flex flex-wrap gap-x-5 gap-y-2 text-[11px] uppercase tracking-[0.18em] opacity-80">
-            <li>✦ New drops</li><li>✦ Styling notes</li><li>✦ Members-only offers</li>
-          </ul>
         </div>
       </div>
 
